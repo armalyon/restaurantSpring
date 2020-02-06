@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
+<head>
+    <title th:text="#{string.admin.panel}"></title>
+</head>
+<body>
+<div class="container">
+    <h3 th:inline="text">[[#{string.admin.admin}]] [[${#httpServletRequest.remoteUser}]]</h3>
+
+    <table>
+        <tr>
+            <td>
+                <form th:action="@{/admin/confirmation}" method="get">
+                    <input class="button" type="submit" th:value="#{string.admin.button.waiting}">
+                </form>
+            </td>
+            <form th:action="@{/admin}" method="get">
+                <input class="button" type="submit" th:value="#{string.admin.confirmation.button.main}">
+            </form>
+            <td>
+                <form th:action="@{/admin/stats}" method="get">
+                    <input type="submit" class="button" th:value="#{string.admin.button.stats}">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/logout}" method="post">
+                    <input class="button" type="submit" th:value="#{string.common.logout}"/>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+
+    <div class="tableContainer">
+        <span class="error" th:if="${#httpServletRequest.getParameter('order') == 'notfound'}"
+              th:text="#{string.order.not.found}"></span>
+        <div th:if="${!confirmed.isEmpty()}">
+            <span class="header" th:text="#{string.admin.orders.confirmed}"></span>
+        </div>
+        <table class="table" th:if="${!confirmed.isEmpty()}">
+            <tr>
+                <td th:text="#{string.admin.orders.username}"></td>
+                <td th:text="#{string.admin.orders.name}"></td>
+                <td th:text="#{string.admin.orders.dish}"></td>
+                <td th:text="#{string.admin.orders.quantity}"></td>
+                <td th:text="#{string.admin.orders.price}"></td>
+                <td th:text="#{string.admin.orders.action.bill}"></td>
+            </tr>
+            <tr th:each="order : ${confirmed}">
+                <td th:text="${order.user.username}"></td>
+                <td th:text="${order.user.name}"></td>
+                <td th:if="${#httpServletRequest.getParameter('lang') == 'en'} or ${#httpServletRequest.getParameter('lang') ==
+            null}" th:text="${order.menuItem.name}"></td>
+                <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}"
+                    th:text="${order.menuItem.nameUA}"></td>
+                <td th:text="${order.quantity}"></td>
+                <td th:text="${order.totalPrice}"></td>
+
+                <td>
+                    <form th:action="@{/admin/confirmed/bill}" method="post" style="float: left">
+                        <input type="hidden" name="id" th:value="${order.id}">
+                        <input type="submit" class="button"
+                               th:value="#{string.admin.orders.action.bill}">
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <nav th:if="${confirmed.totalPages > 1}">
+            <th:block th:each="i: ${#numbers.sequence(0, confirmed.totalPages - 1)}">
+                <div th:if="${confirmed.number == i}" class="page-item"><span
+                        class="page-link">[[${i}+1]] </span></div>
+                <div th:unless="${confirmed.number == i}" class="page-item">
+                    <a th:href="@{/admin/stats(page=${i})}" class="page-link">[[${i}+1]]</a>
+                </div>
+            </th:block>
+        </nav>
+    </div>
+
+    <div style="float: left">
+<span class="locale">
+    <a href="?lang=en">EN</a>
+    |
+    <a href="?lang=ua">UA</a>
+</span>
+    </div>
+</div>
+</body>
+</html>

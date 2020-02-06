@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
+<head>
+    <title th:text="#{string.admin.panel}"></title>
+</head>
+<body>
+<div class="container">
+    <h3 th:inline="text">[[#{string.admin.admin}]] [[#{string.admin.panel.stats}]]</h3>
+
+    <table>
+        <tr>
+            <td>
+                <form th:action="@{/admin}" method="get" class="navigation">
+                    <input class="button" type="submit" th:value="#{string.admin.stats.user.button.main}">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/admin/stats}" method="get">
+                    <input class="button" type="submit" th:value="#{string.admin.stats.user.button.back}">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/logout}" method="post">
+                    <input class="button" type="submit" th:value="#{string.common.logout}"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <span class="header"
+              th:inline="text"> [[#{string.admin.stats.user.username}]]: [[${userInfoDTO.username}]]</span>
+    </div>
+    <div>
+        <span class="header" th:inline="text"> [[#{string.admin.stats.user.name}]]: [[${userInfoDTO.name}]]</span>
+    </div>
+    <div>
+        <span class="header" th:inline="text"> [[#{string.admin.stats.user.surname}]]: [[${userInfoDTO.surname}]]</span>
+    </div>
+    <div>
+        <span class="header"
+              th:inline="text"> [[#{string.admin.stats.user.username}]]: [[${userInfoDTO.username}]]</span>
+    </div>
+    <div>
+        <span class="header" th:inline="text"> [[#{string.admin.stats.user.total.orders}]]: [[${userInfoDTO.ordersTotalNumber}]]</span>
+    </div>
+    <div>
+        <span class="header"
+              th:inline="text"> [[#{string.admin.stats.registration.date}]]: [[${userInfoDTO.registrationDate}]]</span>
+    </div>
+    <table class="table" th:if="${!billsByClient.isEmpty()}">
+        <tr>
+            <th th:text="#{string.admin.stats.user.order.date}"></th>
+            <th th:text="#{string.admin.stats.user.order.time}"></th>
+            <th th:text="#{string.admin.stats.user.order.item}"></th>
+            <th th:text="#{string.admin.stats.user.order.quantity}"></th>
+            <th th:text="#{string.admin.stats.user.order.total.price}"></th>
+            <th th:text="#{string.admin.stats.user.order.paymaent.date}"></th>
+        </tr>
+        <tr th:each="bill : ${billsByClient}">
+            <td th:text="${bill.order.date}"></td>
+            <td th:text="${bill.order.time}"></td>
+            <td th:if="${#httpServletRequest.getParameter('lang') == 'en'} or ${#httpServletRequest.getParameter('lang') ==
+            null}"
+                th:text="${bill.order.menuItem.name}"></td>
+            <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}"
+                th:text="${bill.order.menuItem.nameUA}"></td>
+            <td th:text="${bill.order.quantity}"></td>
+            <td th:text="${bill.order.totalPrice}"></td>
+            <td th:text="${bill.paymentDateTime}"></td>
+        </tr>
+        <tr>
+
+
+        </tr>
+    </table>
+    <nav th:if="${billsByClient.totalPages > 1}">
+        <th:block th:each="i: ${#numbers.sequence(0, billsByClient.totalPages - 1)}">
+            <div th:if="${billsByClient.number == i}" class="page-item"><span
+                    class="page-link">[[${i}+1]] </span></div>
+            <div th:unless="${billsByClient.number == i}" class="page-item">
+                <a th:href="@{/admin/stats(page=${i})}" class="page-link">[[${i}+1]]</a>
+            </div>
+        </th:block>
+    </nav>
+
+    <!-- <span class="locale">
+      <a th:href="@{''(lang='en')}">EN</a>
+      |
+      <a th:href="@{''(lang='en')}">UA</a>
+      </span>
+ -->
+</div>
+
+</body>
+</html>

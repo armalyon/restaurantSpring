@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="css/form.css">
+
+<head>
+    <title th:text="#{string.reg.title.registration}"></title>
+</head>
+<body>
+<div class="container">
+    <div class="panel-heading">
+        <h3 class="panel-title" th:text="#{string.reg.registration.form}"></h3>
+    </div>
+    <div class="panel-body">
+
+        <form th:action="@{/registration}" method="post" th:object="${user}">
+            <div class="field">
+                <label th:text="#{string.reg.login}">
+                </label>
+                <input type="text" name="username" class="input"
+                       required th:placeholder="#{string.reg.username.placeholder}"/>
+            </div>
+            <div class="field">
+                <label th:text="#{string.reg.password}">
+                </label>
+                <input type="password" name="password" class="input" required
+                       th:placeholder="#{string.reg.password.placeholder}"/>
+            </div>
+            <div class="field">
+                <label th:text="#{string.reg.password.confirm}">
+                </label>
+                <input type="password" name="passwordConfirmation" class="input" required
+                       th:placeholder="#{string.reg.password.placeholder}"/>
+            </div>
+            <div class="field">
+                <label th:text="#{string.reg.name}">
+                </label>
+                <input type="text" name="name" class="input"
+                       required th:placeholder="#{string.reg.name.placeholder}"/>
+            </div>
+            <div class="field">
+                <label th:text="#{string.reg.surname}">
+                </label>
+                <input type="text" name="surname" class="input"
+                       required th:placeholder="#{string.reg.surname.placeholder}"
+                />
+            </div>
+            <div>
+                <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                <span class="error" th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}"></span>
+                <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+            <div class="field">
+                <input type="submit" th:value="#{string.reg.button.registration}" class="button"/></div>
+            <div class="field">
+            </div>
+        </form>
+
+    </div>
+    <div class="locale">
+        <a href="?lang=en">EN</a>
+        |
+        <a href="?lang=ua">UA</a>
+    </div>
+
+</div>
+</body>
+</html>

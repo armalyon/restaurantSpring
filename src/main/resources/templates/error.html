@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title th:text="#{string.error.internal}"></title>
+</head>
+<body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+<h1 th:text="${httpStatus}">404</h1>
+<h1 th:text="#{string.not.found}"></h1>
+<a th:href="@{/}" th:text="#{string.admin.stats.user.button.main}"></a>
+<div margin-left="50">
+</div>
+</body>
+</html>

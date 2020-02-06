@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
+<head>
+    <title th:text="#{string.admin.panel}"></title>
+</head>
+<body>
+<div class="container">
+    <h3 th:inline="text">[[#{string.admin.admin}]] [[${#httpServletRequest.remoteUser}]]</h3>
+
+    <div>
+        <span class="header" th:text="#{string.user.restaurant.menu}"></span>
+    </div>
+    <table class="table">
+        <tr>
+            <th th:text="#{string.user.menu.dish}"></th>
+            <th th:text="#{string.user.menu.weight}"></th>
+            <th th:text="#{string.user.menu.price}"></th>
+            <th th:text="#{string.admin.menu.available}"></th>
+        </tr>
+        <tr th:each="item : ${menuDTO.menu}">
+            <td th:if="${#httpServletRequest.getParameter('lang') == null} or
+             ${#httpServletRequest.getParameter('lang') == 'en'}"
+                th:text="${item.name}"></td>
+            <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}" th:text="${item.nameUA}"></td>
+            <td th:text="${item.weight}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.storageQuantity}"></td>
+
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <form th:action="@{/admin/confirmation}" method="get">
+                    <input class="button" type="submit" th:value="#{string.admin.button.waiting}">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/admin/confirmed}" method="get" class="navigation">
+                    <input class="button" type="submit" th:value="#{string.admin.button.confirmed}">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/admin/stats}" method="get">
+                    <input type="submit" class="button" th:value="#{string.admin.button.stats}">
+                </form>
+            </td>
+             <td>
+                <form th:action="@{/logout}" method="post">
+                    <input class="button" type="submit" th:value="#{string.common.logout}"/>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+
+
+
+    <div style="float: left">
+<span class="locale">
+    <a href="?lang=en">EN</a>
+    |
+    <a href="?lang=ua">UA</a>
+</span>
+    </div>
+</div>
+</body>
+</html>

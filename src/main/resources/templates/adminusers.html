@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
+<head>
+    <title th:text="#{string.admin.panel}"></title>
+</head>
+<body>
+<div class="container">
+    <h3 th:inline="text">[[#{string.admin.admin}]] [[#{string.admin.panel.stats}]]</h3>
+    <table>
+        <tr>
+            <td>
+                <form th:action="@{/admin}" method="get" class="navigation">
+                    <input class="button" type="submit" th:value="#{string.admin.stats.user.button.main}">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form th:action="@{/logout}" method="post">
+                    <input class="button" type="submit" th:value="#{string.common.logout}"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <span class="error" th:if="${#httpServletRequest.getParameter('idnotfound') != null}"
+          th:text="#{string.id.not.found}"></span>
+    <div>
+        <table class="table" th:if="${clientsNumber} > 0">
+            <tr>
+                <th th:text="#{string.admin.stats.username}"></th>
+                <th th:text="#{string.admin.stats.name}"></th>
+                <th th:text="#{string.admin.stats.surname}"></th>
+                <th th:text="#{string.admin.stats.registration.date}"></th>
+            </tr>
+            <tr th:each="client : ${clients}">
+                <td th:text="${client.username}"></td>
+                <td th:text="${client.name}"></td>
+                <td th:text="${client.surname}"></td>
+                <td th:text="${client.registrationDate}"></td>
+                <td>
+                    <form th:action="@{/admin/stats/client}" method="get">
+                        <input type="hidden" name="id" th:value="${client.id}">
+                        <input type="submit" class="button" th:value="#{string.admin.stats.button.client}">
+                    </form>
+                </td>
+            </tr>
+
+        </table>
+        <nav th:if="${clients.totalPages > 1}">
+            <th:block th:each="i: ${#numbers.sequence(0, clients.totalPages - 1)}">
+                <div th:if="${clients.number == i}" class="page-item"><span
+                        class="page-link">[[${i}+1]] </span></div>
+                <div th:unless="${clients.number == i}" class="page-item">
+                    <a th:href="@{/admin/stats(page=${i})}" class="page-link">[[${i}+1]]</a>
+                </div>
+            </th:block>
+        </nav>
+    </div>
+    <span class="locale">
+    <a href="?lang=en">EN</a>
+    |
+    <a href="?lang=ua">UA</a>
+    </span>
+</div>
+
+</body>
+</html>

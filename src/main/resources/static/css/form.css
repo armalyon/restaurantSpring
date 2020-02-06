@@ -1,0 +1,50 @@
+div.field {
+    padding-bottom: 5px;
+}
+div.field label {
+    margin-left: 10px;
+    display: block;
+    float: left;
+    width: 65px;
+    height: 15px;
+}
+.container {
+    background-color: linen;
+    width: 35%;
+    height: 30%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%) }
+
+.input {
+    margin-left: 100px;
+}
+.button {
+
+    background-color: cornflowerblue;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.locale {
+    float: left;
+    position: absolute;
+    left: 50%;
+}
+H3 { text-align: center }
+
+.error {
+    color: darkred;
+    margin-top: 2px;
+    margin-left: 10px;
+}
+
+::-webkit-input-placeholder {
+font-size: 10px;
+}
+

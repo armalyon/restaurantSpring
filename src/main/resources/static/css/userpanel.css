@@ -1,0 +1,66 @@
+.container {
+    background-color: linen;
+
+     }
+
+.input {
+    margin-left: 10px;
+}
+.button {
+    background-color: cornflowerblue;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+H3 { text-align: center }
+
+.error {
+    color: darkred;
+    margin-top: 2px;
+    margin-left: 10px;
+}
+.header {
+    margin-top: 20px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+.quantity {
+    width: 5ch;
+}
+
+.table {
+    margin-top: 5px;
+    margin-left: 10px;
+    border-collapse: collapse;
+}
+.table TD, TH {
+    padding: 3px;
+    border: 1px solid black;
+}
+
+.tables TD {
+    vertical-align: top;
+}
+
+.nav-container {
+    float: top;
+}
+
+.page-item {
+    float: left;
+    margin-left: 5px;
+
+}
+
+.locale {
+    position: absolute;
+    left: 50%;
+    margin-top: 20px;
+
+}
+

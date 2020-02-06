@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
+<head>
+    <title th:text="#{string.user.panel}"></title>
+</head>
+<body>
+<div class="container">
+    <h3 th:inline="text">[[#{string.user.hello}]] [[${#httpServletRequest.remoteUser}]]!</h3>
+    <span class="header" th:text="#{string.user.restaurant.menu}"></span>
+
+    <span class="error" th:if="${#httpServletRequest.getParameter('quantity') == 'notenough'}"
+          th:text="#{string.admin.error.quantity}"></span>
+
+    <span class="error" th:if="${#httpServletRequest.getParameter('item') == 'notfound'}"
+          th:text="#{string.item.not.found}"></span>
+
+    <table class="table">
+        <tr>
+            <th th:text="#{string.user.menu.dish}"></th>
+            <th th:text="#{string.user.menu.weight}"></th>
+            <th th:text="#{string.user.menu.price}"></th>
+        </tr>
+        <tr th:each="item : ${menuDTO.menu}" th:object="${item}">
+            <td th:if="${#httpServletRequest.getParameter('lang') == 'en'} or ${#httpServletRequest.getParameter('lang') ==
+            null}"
+                th:text="${item.name}"></td>
+            <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}" th:text="${item.nameUA}"></td>
+            <td th:text="${item.weight}"></td>
+            <td th:text="${item.price}"></td>
+            <td>
+                <form class="orderForm" th:action="@{/user/order}" method="post" th:object="${orderDTO}">
+                    <input type="hidden" name="menuItem.id" th:value="${item.id}">
+                    <input type="hidden" name="menuItem.name" th:value="${item.name}">
+                    <input type="hidden" name="menuItem.nameUA" th:value="${item.nameUA}">
+                    <input type="hidden" name="menuItem.storageQuantity" th:value="${item.storageQuantity}">
+                    <input type="hidden" name="menuItem.price" th:value="${item.price}">
+                    <input type="number" class="quantity" max="20" min="0" required th:field="*{quantity}">
+                    <input class="button" type="submit" th:value="#{string.user.menu.order}">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <form th:action="@{/user/bills}" method="get">
+                    <input class="button" type="submit" th:value="#{string.user.get.bills}">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/user/orders}" method="get" class="navigation">
+                    <input class="button" type="submit" th:value="#{string.user.get.orders}">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <div th:if="${todayOrders.orders.size()} != 0">
+        <span class="header" th:text="#{string.user.your.todays.orders}"></span>
+        <table class="table">
+            <tr>
+                <th th:text="#{string.user.ordered.dish}"></th>
+                <th th:text="#{string.user.ordered.quantity}"></th>
+                <th th:text="#{string.user.ordered.time}"></th>
+                <th th:text="#{string.user.ordered.total-price}"></th>
+                <th th:text="#{string.user.ordered.statement}"></th>
+            </tr>
+            <tr th:each="order : ${todayOrders.orders}">
+                <td th:if="${#httpServletRequest.getParameter('lang') == 'en'} or ${#httpServletRequest.getParameter('lang') ==
+            null}"
+                    th:text="${order.menuItem.name}"></td>
+                <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}" th:text="${order.menuItem.nameUA}"></td>
+                <td th:text="${order.quantity}"></td>
+                <td th:text="${order.time}"></td>
+                <td th:text="${order.totalPrice}"></td>
+                <td th:text="${order.orderStatement}"></td>
+            </tr>
+
+        </table>
+    </div>
+    <div>
+        <span class="header" th:if="${todayOrders.orders.size()} == 0"
+              th:text="#{string.user.have.no.orders.today}"></span>
+
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <input class="button" type="submit" th:value="#{string.common.logout}"/>
+    </form>
+    <div>
+<span class="locale" style="float: left">
+    <a href="?lang=en">EN</a>
+    |
+    <a href="?lang=ua">UA</a>
+</span>
+    </div>
+</div>
+</body>
+</html>

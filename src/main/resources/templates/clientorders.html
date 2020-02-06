@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link href="../static/css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
+<head>
+    <title th:text="#{string.user.panel}"></title>
+</head>
+<body>
+<div class="container">
+    <table>
+        <tr>
+            <td>
+                <form th:action="@{/user/bills}" method="get">
+                    <input class="button" type="submit" th:value="#{string.user.get.bills}">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/user}" method="get" class="navigation">
+                    <input class="button" type="submit" th:value="#{string.user.back.menu}">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <div th:if="${orders.orders.size()} != 0">
+        <span class="header" th:text="#{string.user.your.orders}"></span>
+
+        <table class="table">
+            <tr>
+                <th th:text="#{string.user.ordered.dish}"></th>
+                <th th:text="#{string.user.ordered.quantity}"></th>
+                <th th:text="#{string.user.ordered.date}"></th>
+                <th th:text="#{string.user.ordered.time}"></th>
+                <th th:text="#{string.user.ordered.total-price}"></th>
+                <th th:text="#{string.user.ordered.statement}"></th>
+            </tr>
+            <tr th:each="order : ${orders.orders}">
+                <td th:if="${#httpServletRequest.getParameter('lang') == 'en'} or ${#httpServletRequest.getParameter('lang') ==
+            null}"
+                    th:text="${order.menuItem.name}"></td>
+                <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}" th:text="${order.menuItem.nameUA}"></td>
+                <td th:text="${order.quantity}"></td>
+                <td th:text="${order.date}"></td>
+                <td th:text="${order.time}"></td>
+                <td th:text="${order.totalPrice}"></td>
+                <td th:text="${order.orderStatement}"></td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${orders.orders.size()} == 0">
+        <span class="header" th:text="#{string.user.have.no.orders}"></span>
+
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <input class="button" type="submit" th:value="#{string.common.logout}"/>
+    </form>
+    <div>
+<span class="locale" style="float: left">
+    <a href="?lang=en">EN</a>
+    |
+    <a href="?lang=ua">UA</a>
+</span>
+    </div>
+</div>
+</body>
+</html>
