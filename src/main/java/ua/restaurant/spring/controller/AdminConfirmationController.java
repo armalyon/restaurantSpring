@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.restaurant.spring.domain.Order;
 import ua.restaurant.spring.domain.types.OrderStatement;
-import ua.restaurant.spring.dto.OrdersDTO;
 import ua.restaurant.spring.exceptions.NotEnoughItemsException;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
 import ua.restaurant.spring.service.AdminOrderService;
+import ua.restaurant.spring.service.AdminOrderStatementService;
 import ua.restaurant.spring.service.OrderConfirmationService;
 
 @Slf4j
@@ -31,12 +31,15 @@ public class AdminConfirmationController {
 
     private AdminOrderService adminOrderService;
     private OrderConfirmationService orderConfirmationService;
+    private AdminOrderStatementService adminOrderStatementService;
 
     @Autowired
     public AdminConfirmationController(AdminOrderService adminOrderService,
-                                       OrderConfirmationService orderConfirmationService) {
+                                       OrderConfirmationService orderConfirmationService,
+                                       AdminOrderStatementService adminOrderStatementService) {
         this.adminOrderService = adminOrderService;
         this.orderConfirmationService = orderConfirmationService;
+        this.adminOrderStatementService = adminOrderStatementService;
     }
 
     @GetMapping
@@ -64,7 +67,7 @@ public class AdminConfirmationController {
 
     @PostMapping( "/rejectorder" )
     public String rejectOrder(Long id) {
-        orderConfirmationService.updateOrderStatement(OrderStatement.REJECTED, id);
+        adminOrderStatementService.updateOrderStatement(OrderStatement.REJECTED, id);
         return ADMIN_CONFIRMATION_REDIRECT;
     }
 

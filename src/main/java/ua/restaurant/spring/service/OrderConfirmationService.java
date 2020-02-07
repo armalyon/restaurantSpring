@@ -24,16 +24,6 @@ public class OrderConfirmationService {
         this.menuItemRepository = menuItemRepository;
     }
 
-    @Transactional
-    public boolean updateOrderStatement(OrderStatement statement, Long orderId) {
-        try {
-            orderRepository.updateOrderStatementById(statement, orderId);
-        } catch (Throwable e) {
-            return false;
-        }
-        return true;
-    }
-
 
     @Transactional
     public void confirmOrder(Long orderId, Long quantity) throws IdNotFoundExeption {
