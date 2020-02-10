@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.restaurant.spring.domain.Order;
 import ua.restaurant.spring.domain.types.OrderStatement;
-import ua.restaurant.spring.dto.OrdersDTO;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
 import ua.restaurant.spring.service.AdminOrderService;
-import ua.restaurant.spring.service.BillService;
+import ua.restaurant.spring.service.AdminBillService;
 
 @Slf4j
 @Controller
@@ -28,12 +27,12 @@ public class AdminConfirmedController {
             "redirect:/admin/confirmed?order=notfound";
 
     private AdminOrderService adminOrderService;
-    private BillService billService;
+    private AdminBillService adminBillService;
 
     @Autowired
-    public AdminConfirmedController(AdminOrderService adminOrderService, BillService billService) {
+    public AdminConfirmedController(AdminOrderService adminOrderService, AdminBillService adminBillService) {
         this.adminOrderService = adminOrderService;
-        this.billService = billService;
+        this.adminBillService = adminBillService;
     }
 
     @GetMapping
@@ -49,7 +48,7 @@ public class AdminConfirmedController {
     @PostMapping( "/bill" )
     public String billByOrder(Long id) {
         try {
-            billService.saveNewBill(id);
+            adminBillService.saveNewBill(id);
         } catch (IdNotFoundExeption e) {
             return handleNotFoundExc(e);
         }

@@ -16,25 +16,23 @@ import static ua.restaurant.spring.domain.types.OrderStatement.INVOICED;
 
 @Slf4j
 @Service
-public class BillService {
+public class AdminBillService {
     private BillRepository billRepository;
     private OrderRepository orderRepository;
 
     @Autowired
-    public BillService(BillRepository billRepository, OrderRepository orderRepository) {
+    public AdminBillService(BillRepository billRepository, OrderRepository orderRepository) {
         this.billRepository = billRepository;
         this.orderRepository = orderRepository;
     }
 
     public boolean saveNewBill(Long orderId) throws IdNotFoundExeption {
-        Order order =
-                orderRepository
+        Order order = orderRepository
                         .findById(orderId)
                         .orElseThrow(() -> new IdNotFoundExeption("Not found order id", orderId));
         if (order.getOrderStatement()
                 .equals(
-                        INVOICED)
-        ) {
+                        INVOICED)) {
             log.warn("Order statement mismatch. ID:" + orderId);
             return false;
         }

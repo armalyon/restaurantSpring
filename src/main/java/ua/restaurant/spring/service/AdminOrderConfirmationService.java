@@ -14,12 +14,12 @@ import javax.transaction.Transactional;
 import static ua.restaurant.spring.domain.types.OrderStatement.CONFIRMED;
 
 @Service
-public class OrderConfirmationService {
+public class AdminOrderConfirmationService {
     private OrderRepository orderRepository;
     private MenuItemRepository menuItemRepository;
 
     @Autowired
-    public OrderConfirmationService(OrderRepository orderRepository, MenuItemRepository menuItemRepository) {
+    public AdminOrderConfirmationService(OrderRepository orderRepository, MenuItemRepository menuItemRepository) {
         this.orderRepository = orderRepository;
         this.menuItemRepository = menuItemRepository;
     }

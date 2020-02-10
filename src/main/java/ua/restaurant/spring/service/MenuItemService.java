@@ -16,51 +16,71 @@ public class MenuItemService {
         this.menuItemRepository = menuItemRepository;
     }
 
-    @PostConstruct
+  //  @PostConstruct
     public void addMenuItemsToDB() {
         MenuItem item = MenuItem.builder()
-                .name("Pizza")
-                .nameUA("Піцца")
-                .weight(400)
-                .storageQuantity(0)
+                .name("Pizza 4 cheeses")
+                .nameUA("Піца 4 сири")
+                .weight(500)
+                .storageQuantity(15)
                 .price(10)
+                .build();
+        menuItemRepository.save(item);
+
+        item = MenuItem.builder()
+                .name("Pizza Margarita")
+                .nameUA("Піца Маргарита")
+                .weight(500)
+                .storageQuantity(10)
+                .price(13)
+                .build();
+        menuItemRepository.save(item);
+
+        item = MenuItem.builder()
+                .name("Pizza Carbonara")
+                .nameUA("Піца Карбонара")
+                .weight(500)
+                .storageQuantity(4)
+                .price(9)
+                .build();
+        menuItemRepository.save(item);
+
+        item = MenuItem.builder()
+                .name("Pizza Hawaiian")
+                .nameUA("Піца Гавайська")
+                .weight(400)
+                .storageQuantity(8)
+                .price(10)
+                .build();
+        menuItemRepository.save(item);
+
+        item = MenuItem.builder()
+                .name("Pizza Pepperoni")
+                .nameUA("Піца Пепероні")
+                .weight(400)
+                .storageQuantity(2)
+                .price(12)
                 .build();
         menuItemRepository.save(item);
 
         item = MenuItem.builder()
                 .name("Apple juice")
                 .nameUA("Яблучний сік")
-                .weight(500)
-                .storageQuantity(10)
-                .price(3)
-                .build();
-        menuItemRepository.save(item);
-
-        item = MenuItem.builder()
-                .name("Vodka")
-                .nameUA("Горілка")
-                .weight(700)
-                .storageQuantity(4)
-                .price(10)
-                .build();
-        menuItemRepository.save(item);
-
-        item = MenuItem.builder()
-                .name("Cutlet")
-                .nameUA("Котлета")
                 .weight(200)
-                .storageQuantity(8)
-                .price(7)
+                .storageQuantity(2)
+                .price(2)
                 .build();
         menuItemRepository.save(item);
 
         item = MenuItem.builder()
-                .name("Pelmeni")
-                .nameUA("Пельмені")
-                .weight(300)
-                .storageQuantity(2)
-                .price(10)
+                .name("Orange juice")
+                .nameUA("Апельсиновий сік")
+                .weight(200)
+                .storageQuantity(20)
+                .price(2)
                 .build();
         menuItemRepository.save(item);
     }
+
+
 }

@@ -18,7 +18,7 @@ import ua.restaurant.spring.exceptions.NotEnoughItemsException;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
 import ua.restaurant.spring.service.AdminOrderService;
 import ua.restaurant.spring.service.AdminOrderStatementService;
-import ua.restaurant.spring.service.OrderConfirmationService;
+import ua.restaurant.spring.service.AdminOrderConfirmationService;
 
 @Slf4j
 @Controller
@@ -30,15 +30,15 @@ public class AdminConfirmationController {
     private final static String ADMIN_CONFIRMATION_ERROR_REDIRECT = "redirect:/admin/confirmation?error";
 
     private AdminOrderService adminOrderService;
-    private OrderConfirmationService orderConfirmationService;
+    private AdminOrderConfirmationService adminOrderConfirmationService;
     private AdminOrderStatementService adminOrderStatementService;
 
     @Autowired
     public AdminConfirmationController(AdminOrderService adminOrderService,
-                                       OrderConfirmationService orderConfirmationService,
+                                       AdminOrderConfirmationService adminOrderConfirmationService,
                                        AdminOrderStatementService adminOrderStatementService) {
         this.adminOrderService = adminOrderService;
-        this.orderConfirmationService = orderConfirmationService;
+        this.adminOrderConfirmationService = adminOrderConfirmationService;
         this.adminOrderStatementService = adminOrderStatementService;
     }
 
@@ -55,8 +55,8 @@ public class AdminConfirmationController {
     @PostMapping( "/confirmorder" )
     public String confirmOrder(@RequestParam Long id, @RequestParam Long quantity) {
         try {
-            if (orderConfirmationService.isCanBeConfirmed(id))
-                                       orderConfirmationService.confirmOrder(id, quantity);
+            if (adminOrderConfirmationService.isCanBeConfirmed(id))
+                                       adminOrderConfirmationService.confirmOrder(id, quantity);
         } catch (IdNotFoundExeption e) {
             return handleNotFoundExc(e);
         } catch (NotEnoughItemsException e) {
