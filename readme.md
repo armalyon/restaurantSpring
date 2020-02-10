@@ -9,28 +9,28 @@
 
 Як встановити:
 
-Clone project
-Запустити schema.sql що знаходиться в папці resources/ 
-Запустити populate.sql що знаходиться в папці resources/ 
-Обновити логін і пароль в файлі resources/application.properties
-Запустити Spring проект
-Перейти за посиланням localhost:8080/
+1. Clone project
+2. Запустити schema.sql що знаходиться в папці resources/ 
+3. Запустити populate.sql що знаходиться в папці resources/ 
+4. Обновити логін і пароль в файлі resources/application.properties
+5. Запустити Spring проект
+6. Перейти за посиланням localhost:8080/
 
 Бізнес логіка:
 
-Користувач може залогінитися як клієнт або адміністратор. - LoginController (POST)
-Клієнт може зареєструватися на сайті. - RegistrstionController (POST)
-Клієнт може бачити сторінку з меню і замовленням в цей день. - ClientPageController (GET)
-Адміністратор може бачити сторінку з меню і кількістю доступних елементів меню AdminPageController (GET)
-Клієнт може зробити замовлення. - ClientPageController (POST)
-Клієнт може перейти на сторінку своїх замовлень. - ClientOrdersController (GET)
-Адміністратор може перейти на сторінку всіх замовлень - AdminConfirmationController (GET)
-Адміністратор може підтвердити замовлення - AdminConfirmationController (POST)
-Адміністратор може відмовити замовлення - AdminConfirmation (POST)
-Адміністратор може перейти на сторінку підтвердженних замовлень - AdminConfirmedController (GET)
-Адміністратор може Виставити рахунок по замовленню - AdminConfirmerController (POST)
-Клієнт може перейти на сторінку своїх рахунків - ClientBillsController (GET)
-Клієнт може сплатити рахунок (перевести гроші на рахунок адміністратора) - ClientBillsController (POST)
-Адміністратор може перейти на сторінку зі списком всіх клієнтів - AdminStatsPageController (GET) 
-Адміністратор може перейти на сторінку зі статистикою по клієнту - AdminClientStatsController(GET) 
-Користувач може розлогінитися. LogoutCommand (POST)
+1. Користувач може залогінитися як клієнт або адміністратор. - LoginController (POST)
+2. Клієнт може зареєструватися на сайті. - RegistrstionController (POST)
+3. Клієнт може бачити сторінку з меню і замовленням в цей день. - ClientPageController (GET)
+4. Адміністратор може бачити сторінку з меню і кількістю доступних елементів меню AdminPageController (GET)
+5. Клієнт може зробити замовлення. - ClientPageController (POST)
+6. Клієнт може перейти на сторінку своїх замовлень. - ClientOrdersController (GET)
+7. Адміністратор може перейти на сторінку всіх замовлень - AdminConfirmationController (GET)
+8. Адміністратор може підтвердити замовлення - AdminConfirmationController (POST)
+9. Адміністратор може відмовити замовлення - AdminConfirmation (POST)
+10. Адміністратор може перейти на сторінку підтвердженних замовлень - AdminConfirmedController (GET)
+11. Адміністратор може Виставити рахунок по замовленню - AdminConfirmerController (POST)
+12. Клієнт може перейти на сторінку своїх рахунків - ClientBillsController (GET)
+13. Клієнт може сплатити рахунок (перевести гроші на рахунок адміністратора) - ClientBillsController (POST)
+14. Адміністратор може перейти на сторінку зі списком всіх клієнтів - AdminStatsPageController (GET) 
+15. Адміністратор може перейти на сторінку зі статистикою по клієнту - AdminClientStatsController(GET) 
+16. Користувач може розлогінитися. LogoutCommand (POST)
