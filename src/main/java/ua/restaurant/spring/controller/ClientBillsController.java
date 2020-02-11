@@ -64,7 +64,7 @@ public class ClientBillsController {
         } catch (IdNotFoundExeption e) {
             return handleIdNotFoundExc(e);
         } catch (UserNotFoundException e) {
-            e.printStackTrace();
+            log.warn(e.getMessage());
         }
 
         return USER_BILLS_REDIRECT;
@@ -76,8 +76,8 @@ public class ClientBillsController {
         return USER_BILLS_NOTFOUND_ERROR_REDIRECT;
     }
 
-    private String handleNotEnoughFundsExc( NotEnoughFundsException e){
-        log.warn(e.getMessage() + "bill id=" + e.getBillId() + " difference=" + e.getFoundsDifference());
+    private String handleNotEnoughFundsExc(NotEnoughFundsException e) {
+        log.warn("exception: {} bill_id = {} fundsDiff = {}", e.getMessage(), e.getBillId(), e.getFoundsDifference());
         return USER_BILLS_FUNDS_ERROR_REDIRECT;
     }
 }
