@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      th:with="lang=${#locale.language}" th:lang="${lang}">
 <link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
 <head>
     <title th:text="#{string.user.your.bills}"></title>
@@ -30,35 +31,36 @@
     <span class="error" th:if="${#httpServletRequest.getParameter('fnds') == 'error'}"
           th:text="#{string.user.bills.not.enough.founds}"></span>
 
-    <span class="header" th:inline="text"> [[#{string.user.bills.your.founds}]]: [[${funds}]]</span>
+        <span class="header" th:inline="text"> [[#{string.user.bills.your.founds}]]: [[${funds}]]</span>
 
-    <table class="table">
-        <tr>
-            <th th:text="#{string.user.ordered.dish}"></th>
-            <th th:text="#{string.user.ordered.quantity}"></th>
-            <th th:text="#{string.user.bills.invoice.date}"></th>
-            <th th:text="#{string.user.bills.payment.date}"></th>
-            <th th:text="#{string.user.ordered.total-price}"></th>
-            <th th:text="#{string.user.bills.pay}"></th>
-        </tr>
-        <tr th:each="bill : ${bills.bills}">
-            <td th:if="${#httpServletRequest.getParameter('lang') == null} or ${#httpServletRequest.getParameter('lang') == 'en'}"
-                th:text="${bill.order.menuItem.name}"></td>
-            <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}" th:text="${bill.order.menuItem.nameUA}"></td>
-            <td th:text="${bill.order.quantity}"></td>
-            <td th:text="${bill.invoiceDateTime}"></td>
-            <td th:if="${bill.paymentDateTime} != null" th:text="${bill.paymentDateTime}"></td>
-            <td th:if="${bill.paymentDateTime} == null"></td>
-            <td th:text="${bill.order.totalPrice}"></td>
+        <table class="table">
+            <tr>
+                <th th:text="#{string.user.ordered.dish}"></th>
+                <th th:text="#{string.user.ordered.quantity}"></th>
+                <th th:text="#{string.user.bills.invoice.date}"></th>
+                <th th:text="#{string.user.bills.payment.date}"></th>
+                <th th:text="#{string.user.ordered.total-price}"></th>
+                <th th:text="#{string.user.bills.pay}"></th>
+            </tr>
+            <tr th:each="bill : ${bills.bills}">
+                <td>
+                    <div th:if="${lang!= 'ua'}" th:text=" ${bill.order.menuItem.name}"></div>
+                    <div th:if="${lang == 'ua'}" th:text="${bill.order.menuItem.nameUA}"></div>
+                </td>
+                <td th:text="${bill.order.quantity}"></td>
+                <td th:text="${bill.invoiceDateTime}"></td>
+                <td th:if="${bill.paymentDateTime} != null" th:text="${bill.paymentDateTime}"></td>
+                <td th:if="${bill.paymentDateTime} == null"></td>
+                <td th:text="${bill.order.totalPrice}"></td>
 
-            <td>
-                <form th:if="${bill.paymentDateTime} == null" th:action="@{/user/bills/pay}" method="post">
-                    <input type="hidden" name="id" th:value="${bill.id}">
-                    <input class="button" type="submit" th:value="#{string.user.bills.pay}">
-                </form>
-            </td>
-        </tr>
-    </table>
+                <td>
+                    <form th:if="${bill.paymentDateTime} == null" th:action="@{/user/bills/pay}" method="post">
+                        <input type="hidden" name="id" th:value="${bill.id}">
+                        <input class="button" type="submit" th:value="#{string.user.bills.pay}">
+                    </form>
+                </td>
+            </tr>
+        </table>
     </div>
     <div th:if="${bills.bills.size()} == 0">
         <span class="header" th:text="#{string.user.have.no.bills}"> </span>

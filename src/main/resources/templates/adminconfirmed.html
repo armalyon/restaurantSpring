@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      th:with="lang=${#locale.language}" th:lang="${lang}">
 <link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
 <head>
     <title th:text="#{string.admin.panel}"></title>
@@ -50,10 +51,10 @@
             <tr th:each="order : ${confirmed}">
                 <td th:text="${order.user.username}"></td>
                 <td th:text="${order.user.name}"></td>
-                <td th:if="${#httpServletRequest.getParameter('lang') == 'en'} or ${#httpServletRequest.getParameter('lang') ==
-            null}" th:text="${order.menuItem.name}"></td>
-                <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}"
-                    th:text="${order.menuItem.nameUA}"></td>
+                <td>
+                    <div th:if="${lang!= 'ua'}" th:text="${order.menuItem.name}"></div>
+                    <div th:if="${lang == 'ua'}" th:text="${order.menuItem.nameUA}"></div>
+                </td>
                 <td th:text="${order.quantity}"></td>
                 <td th:text="${order.totalPrice}"></td>
 
