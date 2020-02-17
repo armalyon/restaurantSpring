@@ -5,14 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.restaurant.spring.domain.Bill;
 import ua.restaurant.spring.domain.Order;
-import ua.restaurant.spring.domain.types.BillStatement;
+import ua.restaurant.spring.domain.type.BillStatement;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
 import ua.restaurant.spring.repository.BillRepository;
 import ua.restaurant.spring.repository.OrderRepository;
 
 import java.time.LocalDateTime;
 
-import static ua.restaurant.spring.domain.types.OrderStatement.INVOICED;
+import static ua.restaurant.spring.domain.type.OrderStatement.INVOICED;
 
 @Slf4j
 @Service

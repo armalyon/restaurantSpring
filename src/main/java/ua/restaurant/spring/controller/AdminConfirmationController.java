@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.restaurant.spring.domain.Order;
-import ua.restaurant.spring.domain.types.OrderStatement;
+import ua.restaurant.spring.domain.type.OrderStatement;
 import ua.restaurant.spring.exceptions.NotEnoughItemsException;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
 import ua.restaurant.spring.service.AdminOrderService;

@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 import static ua.restaurant.spring.service.utility.Constants.ADMIN_USERNAME;
-import static ua.restaurant.spring.domain.types.BillStatement.PAYED;
+import static ua.restaurant.spring.domain.type.BillStatement.PAYED;
 
 @Slf4j
 @Service

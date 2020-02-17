@@ -42,7 +42,10 @@
                 <td th:text="${order.date}"></td>
                 <td th:text="${order.time}"></td>
                 <td th:text="${order.totalPrice}"></td>
-                <td th:text="${order.orderStatement}"></td>
+                <td>
+                    <div th:if="${lang!= 'ua'}" th:text="${order.orderStatement.getMessage()}"></div>
+                    <div th:if="${lang == 'ua'}" th:text="${order.orderStatement.getMessageUA()}"></div>
+                </td>
             </tr>
         </table>
     </div>

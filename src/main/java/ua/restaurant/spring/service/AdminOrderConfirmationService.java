@@ -3,7 +3,6 @@ package ua.restaurant.spring.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.restaurant.spring.domain.Order;
-import ua.restaurant.spring.domain.types.OrderStatement;
 import ua.restaurant.spring.exceptions.NotEnoughItemsException;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
 import ua.restaurant.spring.repository.MenuItemRepository;
@@ -11,7 +10,7 @@ import ua.restaurant.spring.repository.OrderRepository;
 
 import javax.transaction.Transactional;
 
-import static ua.restaurant.spring.domain.types.OrderStatement.CONFIRMED;
+import static ua.restaurant.spring.domain.type.OrderStatement.CONFIRMED;
 
 @Service
 public class AdminOrderConfirmationService {

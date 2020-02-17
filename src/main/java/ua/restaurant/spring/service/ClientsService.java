@@ -5,8 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.restaurant.spring.domain.User;
-import ua.restaurant.spring.domain.types.Role;
-import ua.restaurant.spring.dto.ClientsDTO;
+import ua.restaurant.spring.domain.type.Role;
 import ua.restaurant.spring.repository.UserRepository;
 
 @Service

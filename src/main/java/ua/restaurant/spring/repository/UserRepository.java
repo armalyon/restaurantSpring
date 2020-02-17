@@ -3,9 +3,9 @@ package ua.restaurant.spring.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ua.restaurant.spring.domain.User;
-import ua.restaurant.spring.domain.types.Role;
+import ua.restaurant.spring.domain.type.Role;
 import org.springframework.data.domain.Pageable;
-import java.util.List;
+
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {

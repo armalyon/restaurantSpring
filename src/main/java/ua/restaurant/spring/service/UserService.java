@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ua.restaurant.spring.domain.User;
 import ua.restaurant.spring.domain.UserAdapter;
-import ua.restaurant.spring.domain.types.Role;
+import ua.restaurant.spring.domain.type.Role;
 import ua.restaurant.spring.repository.UserRepository;
 
 @Slf4j

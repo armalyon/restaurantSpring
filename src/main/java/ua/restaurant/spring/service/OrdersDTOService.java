@@ -2,9 +2,7 @@ package ua.restaurant.spring.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ua.restaurant.spring.domain.types.OrderStatement;
 import ua.restaurant.spring.dto.OrdersDTO;
 import ua.restaurant.spring.repository.OrderRepository;
 

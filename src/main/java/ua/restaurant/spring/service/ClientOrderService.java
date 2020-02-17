@@ -3,7 +3,7 @@ package ua.restaurant.spring.service;
 import org.springframework.stereotype.Service;
 import ua.restaurant.spring.domain.Order;
 import ua.restaurant.spring.domain.User;
-import ua.restaurant.spring.domain.types.OrderStatement;
+import ua.restaurant.spring.domain.type.OrderStatement;
 import ua.restaurant.spring.dto.OrderDTO;
 import ua.restaurant.spring.exceptions.ItemNotFoundException;
 import ua.restaurant.spring.exceptions.NotEnoughItemsException;

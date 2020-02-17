@@ -1,4 +1,4 @@
-package ua.restaurant.spring.domain.types;
+package ua.restaurant.spring.domain.type;
 
 public enum BillStatement {
     INVOICE,

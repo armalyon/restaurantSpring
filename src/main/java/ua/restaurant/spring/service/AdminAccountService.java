@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.restaurant.spring.domain.User;
-import ua.restaurant.spring.domain.types.Role;
+import ua.restaurant.spring.domain.type.Role;
 import ua.restaurant.spring.repository.UserRepository;
 
 import javax.annotation.PostConstruct;

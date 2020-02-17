@@ -1,11 +1,10 @@
 package ua.restaurant.spring.domain;
 
 import lombok.*;
-import ua.restaurant.spring.domain.types.OrderStatement;
+import ua.restaurant.spring.domain.type.OrderStatement;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Builder

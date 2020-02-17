@@ -1,7 +1,7 @@
 package ua.restaurant.spring.domain;
 
 import lombok.*;
-import ua.restaurant.spring.domain.types.Role;
+import ua.restaurant.spring.domain.type.Role;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
