@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      th:with="lang=${#locale.language}" th:lang="${lang}">
 <link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
 <head>
     <title th:text="#{string.admin.panel}"></title>
@@ -7,7 +8,7 @@
 <body>
 <div class="container">
     <h3 th:inline="text">[[#{string.admin.admin}]] [[${#httpServletRequest.remoteUser}]]</h3>
-       <div>
+    <div>
         <table>
             <tr>
                 <td>
@@ -50,10 +51,10 @@
                     <tr th:each="ordered : ${waiting}">
                         <td th:text="${ordered.user.username}"></td>
                         <td th:text="${ordered.user.name}"></td>
-                        <td th:if="${#httpServletRequest.getParameter('lang') == null} or
-             ${#httpServletRequest.getParameter('lang') == 'en'}" th:text="${ordered.menuItem.name}"></td>
-                        <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}"
-                            th:text="${ordered.menuItem.nameUA}"></td>
+                        <td>
+                            <div th:if="${lang!= 'ua'}" th:text="${ordered.menuItem.name}"></div>
+                            <div th:if="${lang == 'ua'}" th:text="${ordered.menuItem.nameUA}"></div>
+                        </td>
                         <td th:text="${ordered.quantity}"></td>
                         <td>
                             <form th:action="@{/admin/confirmation/confirmorder}" method="post" style="float: left">
