@@ -5,9 +5,9 @@
     <title th:text="#{string.error.internal}"></title>
 </head>
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+<div margin-left="50">
 <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">500</h1>
 <h1 th:text="#{string.error.internal}"></h1>
-<div margin-left="50">
 </div>
 </body>
 </html>

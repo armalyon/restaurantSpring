@@ -5,10 +5,10 @@
     <title th:text="#{string.error.method.not.allowed}"></title>
 </head>
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+<div margin-left="50">
 <h1 th:text="${httpStatus}">405</h1>
 <h1 th:text="#{string.error.method.not.allowed}"></h1>
 <a th:href="@{/}" th:text="#{string.admin.stats.user.button.main}"></a>
-<div margin-left="50">
 </div>
 </body>
 </html>
