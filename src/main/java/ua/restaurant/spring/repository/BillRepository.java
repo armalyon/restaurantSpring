@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BillRepository extends JpaRepository <Bill, Long> {
-    List<Bill> findAllByOrder_User_UsernameOrderByInvoiceDateTimeDesc(String username);
+    Page<Bill> findAllByOrder_User_UsernameOrderByInvoiceDateTimeDesc(String username, Pageable pageable);
     Page<Bill> findAllByOrder_User_IdOrderByOrder_DateDesc(Long id, Pageable pageable);
     Optional<Bill> findById(Long id);
 

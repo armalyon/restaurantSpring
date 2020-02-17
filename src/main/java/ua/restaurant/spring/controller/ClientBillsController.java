@@ -2,12 +2,16 @@ package ua.restaurant.spring.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ua.restaurant.spring.domain.Bill;
 import ua.restaurant.spring.dto.BillsDTO;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
 import ua.restaurant.spring.exceptions.NotEnoughFundsException;
@@ -42,16 +46,14 @@ public class ClientBillsController {
 
     @GetMapping
     @PreAuthorize( "hasAuthority('CLIENT')" )
-    public String getBills(Principal principal,
+    public String getBills(@PageableDefault Pageable pageable, Principal principal,
                            Model model) {
-        BillsDTO billsDTO = clientBillsService
-                .getBillsByUserNameNewestFirst(
-                        principal.getName()
-                );
+        Page<Bill> bills = clientBillsService.getBillsByUserNameNewestFirst(
+                        principal.getName() , pageable);
         Long funds = userService
                 .getFundsByUsername(principal.getName());
         model.addAttribute("funds", funds);
-        model.addAttribute("bills", billsDTO);
+        model.addAttribute("bills", bills);
         return CLIENT_BILLS_PAGE;
     }
 

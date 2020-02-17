@@ -18,11 +18,9 @@ public class ClientBillsService {
         this.billRepository = billRepository;
     }
 
-    public BillsDTO getBillsByUserNameNewestFirst(String username) {
-        return new BillsDTO(
-                billRepository
-                        .findAllByOrder_User_UsernameOrderByInvoiceDateTimeDesc(username)
-        );
+    public Page<Bill> getBillsByUserNameNewestFirst(String username, Pageable pageable) {
+        return billRepository
+                        .findAllByOrder_User_UsernameOrderByInvoiceDateTimeDesc(username, pageable);
     }
 
     public Page<Bill> getBillsByUserIdNewestFirst(Long id, Pageable pageable) {

@@ -27,7 +27,7 @@
     <span class="error" th:if="${#httpServletRequest.getParameter('idnotfound') != null}"
           th:text="#{string.id.not.found}"></span>
 
-    <div th:if="${bills.bills.size()} != 0">
+    <div th:if="${!bills.isEmpty()}">
     <span class="error" th:if="${#httpServletRequest.getParameter('fnds') == 'error'}"
           th:text="#{string.user.bills.not.enough.founds}"></span>
 
@@ -42,7 +42,7 @@
                 <th th:text="#{string.user.ordered.total-price}"></th>
                 <th th:text="#{string.user.bills.pay}"></th>
             </tr>
-            <tr th:each="bill : ${bills.bills}">
+            <tr th:each="bill : ${bills}">
                 <td>
                     <div th:if="${lang!= 'ua'}" th:text=" ${bill.order.menuItem.name}"></div>
                     <div th:if="${lang == 'ua'}" th:text="${bill.order.menuItem.nameUA}"></div>
@@ -61,13 +61,23 @@
                 </td>
             </tr>
         </table>
+        <nav th:if="${bills.totalPages > 1}">
+            <th:block th:each="i: ${#numbers.sequence(0, bills.totalPages - 1)}">
+                <div th:if="${bills.number == i}" class="page-item"><span
+                        class="page-link">[[${i}+1]] </span></div>
+                <div th:unless="${bills.number == i}" class="page-item">
+                    <a th:href="@{/user/bills(page=${i})}" class="page-link">[[${i}+1]]</a>
+                </div>
+            </th:block>
+        </nav>
     </div>
-    <div th:if="${bills.bills.size()} == 0">
+    <div th:if="${bills.isEmpty()}">
         <span class="header" th:text="#{string.user.have.no.bills}"> </span>
     </div>
     <form th:action="@{/logout}" method="post" class="navigation">
         <input class="button" type="submit" th:value="#{string.common.logout}"/>
     </form>
+
     <div>
 <span class="locale" style="float: left">
     <a href="?lang=en">EN</a>
