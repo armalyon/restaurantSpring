@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    List<Order> findAllByUser_UsernameOrderByDateDesc(String username);
+    Page<Order> findAllByUser_UsernameOrderByDateDesc(String username, Pageable pageable);
 
     Page<Order> findAllByOrderStatementOrderByDate(OrderStatement statement, Pageable pageable);
 
