@@ -50,11 +50,11 @@ public class AdminClientStatsController {
             return handleIdNotFoundExc(e);
         }
 
-        Page<Bill> bills = clientBillsService
+        Page<Bill> page = clientBillsService
                 .getBillsByUserIdNewestFirst(id, pageable);
 
         model.addAttribute(userInfoDTO);
-        model.addAttribute("billsByClient", bills);
+        model.addAttribute("page", page);
         return ADMIN_CLIENT_STATS_PAGE;
     }
 

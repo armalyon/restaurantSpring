@@ -33,7 +33,7 @@
                 <th th:text="#{string.admin.stats.surname}"></th>
                 <th th:text="#{string.admin.stats.registration.date}"></th>
             </tr>
-            <tr th:each="client : ${clients}">
+            <tr th:each="client : ${page}">
                 <td th:text="${client.username}"></td>
                 <td th:text="${client.name}"></td>
                 <td th:text="${client.surname}"></td>
@@ -47,11 +47,11 @@
             </tr>
 
         </table>
-        <nav th:if="${clients.totalPages > 1}">
-            <th:block th:each="i: ${#numbers.sequence(0, clients.totalPages - 1)}">
-                <div th:if="${clients.number == i}" class="page-item"><span
+        <nav th:if="${page.totalPages > 1}">
+            <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                <div th:if="${page.number == i}" class="page-item"><span
                         class="page-link">[[${i}+1]] </span></div>
-                <div th:unless="${clients.number == i}" class="page-item">
+                <div th:unless="${page.number == i}" class="page-item">
                     <a th:href="@{/admin/stats(page=${i})}" class="page-link">[[${i}+1]]</a>
                 </div>
             </th:block>
