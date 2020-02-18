@@ -20,11 +20,11 @@ public class ClientBillsService {
 
     public Page<Bill> getBillsByUserNameNewestFirst(String username, @PageableDefault Pageable pageable) {
         return billRepository
-                        .findAllByOrder_User_UsernameOrderByInvoiceDateTimeDesc(username, pageable);
+                .findAllByOrder_User_UsernameOrderByInvoiceDateTimeDesc(username, pageable);
     }
 
     public Page<Bill> getBillsByUserIdNewestFirst(Long id, Pageable pageable) {
         return billRepository
-                        .findAllByOrder_User_IdOrderByOrder_DateDesc(id, pageable);
+                .findAllByOrder_User_IdOrderByOrder_DateDesc(id, pageable);
     }
 }

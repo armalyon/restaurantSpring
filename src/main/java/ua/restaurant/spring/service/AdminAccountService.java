@@ -10,7 +10,7 @@ import ua.restaurant.spring.repository.UserRepository;
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 
-import static ua.restaurant.spring.service.utility.Constants.*;
+import static ua.restaurant.spring.service.utility.Constants.ADMIN_USERNAME;
 
 @Service
 public class AdminAccountService {

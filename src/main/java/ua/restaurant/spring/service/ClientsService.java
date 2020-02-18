@@ -19,10 +19,10 @@ public class ClientsService {
 
     public Page<User> getAllClients(Pageable pageable) {
         return userRepository
-                        .findAllByRole(Role.CLIENT, pageable);
+                .findAllByRole(Role.CLIENT, pageable);
     }
 
-    public int getClientCount(){
+    public int getClientCount() {
         return userRepository.countAllByRole(Role.CLIENT);
     }
 }

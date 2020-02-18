@@ -28,8 +28,8 @@ public class AdminBillService {
 
     public boolean saveNewBill(Long orderId) throws IdNotFoundExeption {
         Order order = orderRepository
-                        .findById(orderId)
-                        .orElseThrow(() -> new IdNotFoundExeption("Not found order id", orderId));
+                .findById(orderId)
+                .orElseThrow(() -> new IdNotFoundExeption("Not found order id", orderId));
         if (order.getOrderStatement()
                 .equals(
                         INVOICED)) {

@@ -2,6 +2,7 @@ package ua.restaurant.spring.dto;
 
 import lombok.*;
 import ua.restaurant.spring.domain.Bill;
+
 import java.util.List;
 
 

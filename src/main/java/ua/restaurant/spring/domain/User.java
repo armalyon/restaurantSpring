@@ -13,17 +13,17 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users", uniqueConstraints={@UniqueConstraint(columnNames={"username"})})
+@Table( name = "users", uniqueConstraints = {@UniqueConstraint( columnNames = {"username"} )} )
 public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long id;
     private String username;
     @Lob
     private String password;
     private String name;
     private String surname;
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private Role role;
     private LocalDateTime registrationDate;
     private long funds;

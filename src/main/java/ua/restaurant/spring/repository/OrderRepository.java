@@ -27,7 +27,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
 
     @Modifying
-    @Query(value = "UPDATE Order o SET o.orderStatement = :statement WHERE o.id = :orderId")
-    void updateOrderStatementById(@Param("statement") OrderStatement statement, @Param("orderId") Long orderId);
+    @Query( value = "UPDATE Order o SET o.orderStatement = :statement WHERE o.id = :orderId" )
+    void updateOrderStatementById(@Param( "statement" ) OrderStatement statement, @Param( "orderId" ) Long orderId);
 
 }

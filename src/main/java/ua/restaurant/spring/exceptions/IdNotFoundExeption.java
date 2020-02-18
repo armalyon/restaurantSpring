@@ -3,7 +3,7 @@ package ua.restaurant.spring.exceptions;
 import lombok.Getter;
 
 @Getter
-public class IdNotFoundExeption extends Exception{
+public class IdNotFoundExeption extends Exception {
     private String message;
     private long id;
 

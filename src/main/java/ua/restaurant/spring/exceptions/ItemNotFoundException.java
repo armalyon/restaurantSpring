@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter
-public class ItemNotFoundException extends Exception{
+public class ItemNotFoundException extends Exception {
     private String message;
 
     public ItemNotFoundException(String message) {

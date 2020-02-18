@@ -14,10 +14,10 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "orders")
+@Table( name = "orders" )
 public class Order {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long id;
     @OneToOne
     private MenuItem menuItem;
@@ -25,7 +25,7 @@ public class Order {
     private long totalPrice;
     private LocalDate date;
     private LocalTime time;
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private OrderStatement orderStatement;
     @OneToOne
     private User user;

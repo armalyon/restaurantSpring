@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ua.restaurant.spring.domain.User;
 import ua.restaurant.spring.service.ClientsService;
 
-import static ua.restaurant.spring.service.utility.Constants.*;
+import static ua.restaurant.spring.service.utility.Constants.REGISTRATION_DATE_FIELD;
 
 
 @Controller
@@ -29,7 +29,7 @@ public class AdminStatsPageController {
 
     @GetMapping
     @PreAuthorize( "hasAuthority('ADMIN')" )
-    public String getstatsPage(@PageableDefault(sort = REGISTRATION_DATE_FIELD, direction = Sort.Direction.DESC, size = 5) Pageable pageable,
+    public String getstatsPage(@PageableDefault( sort = REGISTRATION_DATE_FIELD, direction = Sort.Direction.DESC, size = 5 ) Pageable pageable,
                                Model model) {
         int clientsNumber = clientsService.getClientCount();
         Page<User> page =

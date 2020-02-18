@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import ua.restaurant.spring.domain.MenuItem;
 import ua.restaurant.spring.repository.MenuItemRepository;
 
-import javax.annotation.PostConstruct;
-
 @Service
 public class MenuItemService {
     private MenuItemRepository menuItemRepository;
@@ -16,7 +14,7 @@ public class MenuItemService {
         this.menuItemRepository = menuItemRepository;
     }
 
-  //  @PostConstruct
+    //  @PostConstruct
     public void addMenuItemsToDB() {
         MenuItem item = MenuItem.builder()
                 .name("Pizza 4 cheeses")

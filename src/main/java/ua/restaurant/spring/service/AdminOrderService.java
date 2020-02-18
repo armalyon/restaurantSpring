@@ -13,7 +13,7 @@ public class AdminOrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    public AdminOrderService(OrderRepository orderRepository ) {
+    public AdminOrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 

@@ -12,11 +12,10 @@ import ua.restaurant.spring.repository.BillRepository;
 import ua.restaurant.spring.repository.UserRepository;
 
 import javax.transaction.Transactional;
-
 import java.time.LocalDateTime;
 
-import static ua.restaurant.spring.service.utility.Constants.ADMIN_USERNAME;
 import static ua.restaurant.spring.domain.type.BillStatement.PAYED;
+import static ua.restaurant.spring.service.utility.Constants.ADMIN_USERNAME;
 
 @Slf4j
 @Service
@@ -36,7 +35,7 @@ public class PayBillService {
         User admin = getUserByUsername(ADMIN_USERNAME);
         long transactionSum = bill.getOrder().getTotalPrice();
         if (isBillNotPayed(bill) && isFundsEnough(bill, user)) {
-            prepareEntitiesToPaymentTransaction(user,admin,bill, transactionSum);
+            prepareEntitiesToPaymentTransaction(user, admin, bill, transactionSum);
             savePaymentEntities(bill, user, admin);
             return true;
         }

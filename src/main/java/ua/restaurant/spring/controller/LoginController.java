@@ -26,7 +26,7 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @RequestMapping("/")
+    @RequestMapping( "/" )
     public String getMainPage(Principal principal) {
         Role role = userService
                 .getUserRole(principal.getName());
@@ -40,9 +40,9 @@ public class LoginController {
     }
 
 
-    @RequestMapping("/login")
-    public String getLogin(@RequestParam(value = "error", required = false) String error,
-                           @RequestParam(value = "logout", required = false) String logout,
+    @RequestMapping( "/login" )
+    public String getLogin(@RequestParam( value = "error", required = false ) String error,
+                           @RequestParam( value = "logout", required = false ) String logout,
                            Model model, HttpServletRequest request, Principal principal) {
         logoutIfLoggedIn(request, principal);
         model.addAttribute("error", error != null);

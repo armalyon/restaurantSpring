@@ -10,10 +10,12 @@ import java.util.Optional;
 
 public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
     Optional<MenuItem> findByName(String itemName);
+
     List<MenuItem> findAll();
+
     List<MenuItem> findAllByStorageQuantityGreaterThan(Long greaterThan);
 
     @Modifying
-    @Query(value = "UPDATE MenuItem m SET m.storageQuantity = (m.storageQuantity - :quantity) WHERE m.id = :id")
+    @Query( value = "UPDATE MenuItem m SET m.storageQuantity = (m.storageQuantity - :quantity) WHERE m.id = :id" )
     void decreaseStorageQuantityById(Long id, Long quantity);
 }

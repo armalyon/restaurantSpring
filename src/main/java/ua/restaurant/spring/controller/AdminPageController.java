@@ -23,7 +23,7 @@ public class AdminPageController {
 
     @GetMapping
     @PreAuthorize( "hasAuthority('ADMIN')" )
-    public String getAdminPage( Model model) {
+    public String getAdminPage(Model model) {
         MenuDTO menu =
                 menuService
                         .getMenu();

@@ -15,7 +15,6 @@ import ua.restaurant.spring.exceptions.RegexMismatchException;
 import ua.restaurant.spring.exceptions.UserExistsException;
 import ua.restaurant.spring.service.RegFormValidationService;
 import ua.restaurant.spring.service.UserRegistrationService;
-import ua.restaurant.spring.service.utility.Constants;
 
 import javax.validation.Valid;
 

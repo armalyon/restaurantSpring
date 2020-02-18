@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.restaurant.spring.domain.Bill;
-import ua.restaurant.spring.dto.BillsDTO;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
 import ua.restaurant.spring.exceptions.NotEnoughFundsException;
 import ua.restaurant.spring.exceptions.UserNotFoundException;
@@ -49,7 +48,7 @@ public class ClientBillsController {
     public String getBills(@PageableDefault Pageable pageable, Principal principal,
                            Model model) {
         Page<Bill> page = clientBillsService.getBillsByUserNameNewestFirst(
-                        principal.getName() , pageable);
+                principal.getName(), pageable);
         Long funds = userService
                 .getFundsByUsername(principal.getName());
         model.addAttribute("funds", funds);

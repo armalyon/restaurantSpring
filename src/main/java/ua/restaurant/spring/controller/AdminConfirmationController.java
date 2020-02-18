@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.restaurant.spring.domain.Order;
 import ua.restaurant.spring.domain.type.OrderStatement;
-import ua.restaurant.spring.exceptions.NotEnoughItemsException;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
+import ua.restaurant.spring.exceptions.NotEnoughItemsException;
+import ua.restaurant.spring.service.AdminOrderConfirmationService;
 import ua.restaurant.spring.service.AdminOrderService;
 import ua.restaurant.spring.service.AdminOrderStatementService;
-import ua.restaurant.spring.service.AdminOrderConfirmationService;
 
 @Slf4j
 @Controller
@@ -44,7 +44,7 @@ public class AdminConfirmationController {
 
     @GetMapping
     @PreAuthorize( "hasAuthority('ADMIN')" )
-    public String getConfirmationPage(@PageableDefault Pageable pageable, Model model){
+    public String getConfirmationPage(@PageableDefault Pageable pageable, Model model) {
         Page<Order> page =
                 adminOrderService
                         .getOrdersByStatement(OrderStatement.WAITING, pageable);
@@ -56,7 +56,7 @@ public class AdminConfirmationController {
     public String confirmOrder(@RequestParam Long id, @RequestParam Long quantity) {
         try {
             if (adminOrderConfirmationService.isCanBeConfirmed(id))
-                                       adminOrderConfirmationService.confirmOrder(id, quantity);
+                adminOrderConfirmationService.confirmOrder(id, quantity);
         } catch (IdNotFoundExeption e) {
             return handleNotFoundExc(e);
         } catch (NotEnoughItemsException e) {

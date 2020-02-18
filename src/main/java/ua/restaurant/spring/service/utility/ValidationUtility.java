@@ -15,7 +15,7 @@ import static ua.restaurant.spring.service.utility.Constants.*;
 
 @Slf4j
 @Service
-@PropertySource( value = "classpath:additionalVariables.properties", encoding="UTF-8" )
+@PropertySource( value = "classpath:additionalVariables.properties", encoding = "UTF-8" )
 public class ValidationUtility {
     private Environment environment;
 
@@ -46,7 +46,7 @@ public class ValidationUtility {
         Pattern pattern = getPattern(NAME_REGEX);
         if (!pattern.matcher(name).matches() ||
                 !pattern.matcher(surname).matches()) throw new RegexMismatchException(NAME_FIELD);
-            return true;
+        return true;
     }
 
     private Pattern getPattern(String regexContainer) {

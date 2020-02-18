@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler( HttpRequestMethodNotSupportedException.class )
-    @ResponseStatus( code = HttpStatus.METHOD_NOT_ALLOWED)
+    @ResponseStatus( code = HttpStatus.METHOD_NOT_ALLOWED )
     public String handleMethodNotSupportedExc() {
         return METHOD_NOT_ALLOWED_PAGE;
     }
@@ -51,10 +51,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler( UsernameNotFoundException.class )
     @ResponseStatus( code = HttpStatus.NOT_FOUND )
-    public String handleUsernameNotFoundExc(){
-       return INTERNAL_ERROR_PAGE;
+    public String handleUsernameNotFoundExc() {
+        return INTERNAL_ERROR_PAGE;
     }
-
 
 
 }

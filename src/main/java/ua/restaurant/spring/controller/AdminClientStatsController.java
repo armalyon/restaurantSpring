@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,13 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.restaurant.spring.domain.Bill;
-import ua.restaurant.spring.dto.BillsDTO;
 import ua.restaurant.spring.dto.UserInfoDTO;
 import ua.restaurant.spring.exceptions.IdNotFoundExeption;
 import ua.restaurant.spring.service.ClientBillsService;
 import ua.restaurant.spring.service.UserInfoDTOService;
-
-import static ua.restaurant.spring.service.utility.Constants.REGISTRATION_DATE_FIELD;
 
 @Slf4j
 @Controller
@@ -39,8 +35,8 @@ public class AdminClientStatsController {
 
     @GetMapping
     @PreAuthorize( "hasAuthority('ADMIN')" )
-    public String getClientStatsPage(@PageableDefault(size = 5) Pageable pageable,
-                                         @RequestParam( name = "id" ) Long id,
+    public String getClientStatsPage(@PageableDefault( size = 5 ) Pageable pageable,
+                                     @RequestParam( name = "id" ) Long id,
                                      Model model) {
         UserInfoDTO userInfoDTO = null;
         try {

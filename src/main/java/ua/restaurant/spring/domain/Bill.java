@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "bills")
+@Table( name = "bills" )
 public class Bill {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long id;
     @OneToOne
     private Order order;
-    @Enumerated(EnumType.STRING)
+    @Enumerated( EnumType.STRING )
     private BillStatement statement;
     private LocalDateTime invoiceDateTime;
     private LocalDateTime paymentDateTime;
