@@ -86,19 +86,16 @@
     <div>
         <span class="header" th:if="${todayOrders.orders.size()} == 0"
               th:text="#{string.user.have.no.orders.today}"></span>
-
     </div>
 
     <form th:action="@{/logout}" method="post">
         <input class="button" type="submit" th:value="#{string.common.logout}"/>
     </form>
-    <div>
-<span class="locale" style="float: left">
+    <span class="locale">
     <a href="?lang=en">EN</a>
     |
     <a href="?lang=ua">UA</a>
 </span>
-    </div>
 </div>
 </body>
 </html>

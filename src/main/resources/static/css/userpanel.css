@@ -1,7 +1,7 @@
 .container {
     background-color: linen;
 
-     }
+}
 
 .input {
     margin-left: 10px;
@@ -58,9 +58,8 @@ H3 { text-align: center }
 }
 
 .locale {
-    position: absolute;
-    left: 50%;
-    margin-top: 20px;
+    margin-left: 45%;
+    margin-top: 5px;
 
 }
 

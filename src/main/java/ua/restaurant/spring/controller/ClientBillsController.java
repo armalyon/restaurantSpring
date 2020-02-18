@@ -48,12 +48,12 @@ public class ClientBillsController {
     @PreAuthorize( "hasAuthority('CLIENT')" )
     public String getBills(@PageableDefault Pageable pageable, Principal principal,
                            Model model) {
-        Page<Bill> bills = clientBillsService.getBillsByUserNameNewestFirst(
+        Page<Bill> page = clientBillsService.getBillsByUserNameNewestFirst(
                         principal.getName() , pageable);
         Long funds = userService
                 .getFundsByUsername(principal.getName());
         model.addAttribute("funds", funds);
-        model.addAttribute("bills", bills);
+        model.addAttribute("page", page);
         return CLIENT_BILLS_PAGE;
     }
 
