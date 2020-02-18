@@ -61,6 +61,7 @@
                 </td>
             </tr>
         </table>
+
         <nav th:if="${bills.totalPages > 1}">
             <th:block th:each="i: ${#numbers.sequence(0, bills.totalPages - 1)}">
                 <div th:if="${bills.number == i}" class="page-item"><span

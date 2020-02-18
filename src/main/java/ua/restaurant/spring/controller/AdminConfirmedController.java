@@ -38,10 +38,10 @@ public class AdminConfirmedController {
     @GetMapping
     @PreAuthorize( "hasAuthority('ADMIN')" )
     public String getConfirmedOrrdersPage(@PageableDefault Pageable pageable, Model model) {
-        Page<Order> confirmedOrders =
+        Page<Order> page =
                 adminOrderService
                         .getOrdersByStatement(OrderStatement.CONFIRMED, pageable);
-        model.addAttribute("confirmed", confirmedOrders);
+        model.addAttribute("page", page);
         return ADMIN_CONFIRMED_PAGE;
     }
 

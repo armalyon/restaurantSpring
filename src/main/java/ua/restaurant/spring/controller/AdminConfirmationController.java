@@ -45,10 +45,10 @@ public class AdminConfirmationController {
     @GetMapping
     @PreAuthorize( "hasAuthority('ADMIN')" )
     public String getConfirmationPage(@PageableDefault Pageable pageable, Model model){
-        Page<Order> waitingOrders =
+        Page<Order> page =
                 adminOrderService
                         .getOrdersByStatement(OrderStatement.WAITING, pageable);
-        model.addAttribute("waiting", waitingOrders);
+        model.addAttribute("page", page);
         return ADMIN_CONFIRMATION_PAGE;
     }
 
