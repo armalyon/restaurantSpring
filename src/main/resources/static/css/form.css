@@ -1,6 +1,7 @@
 div.field {
     padding-bottom: 5px;
 }
+
 div.field label {
     margin-left: 10px;
     display: block;
@@ -8,6 +9,7 @@ div.field label {
     width: 65px;
     height: 15px;
 }
+
 .container {
     background-color: linen;
     width: 35%;
@@ -15,11 +17,13 @@ div.field label {
     position: absolute;
     top: 30%;
     left: 50%;
-    transform: translate(-50%, -50%) }
+    transform: translate(-50%, -50%)
+}
 
 .input {
     margin-left: 100px;
 }
+
 .button {
 
     background-color: cornflowerblue;
@@ -31,12 +35,16 @@ div.field label {
     margin-top: 5px;
     cursor: pointer;
 }
+
 .locale {
     float: left;
     position: absolute;
     left: 50%;
 }
-H3 { text-align: center }
+
+H3 {
+    text-align: center
+}
 
 .error {
     color: darkred;
@@ -45,6 +53,6 @@ H3 { text-align: center }
 }
 
 ::-webkit-input-placeholder {
-font-size: 10px;
+    font-size: 10px;
 }
 

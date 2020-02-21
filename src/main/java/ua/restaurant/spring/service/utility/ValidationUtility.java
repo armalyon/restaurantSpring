@@ -42,7 +42,7 @@ public class ValidationUtility {
         return true;
     }
 
-    public boolean areNameAndSurnameValid(String name, String surname) throws RegexMismatchException {
+    public boolean validateNameAndSurname(String name, String surname) throws RegexMismatchException {
         Pattern pattern = getPattern(NAME_REGEX);
         if (!pattern.matcher(name).matches() ||
                 !pattern.matcher(surname).matches()) throw new RegexMismatchException(NAME_FIELD);

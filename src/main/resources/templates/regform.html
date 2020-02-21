@@ -46,7 +46,8 @@
             </div>
             <div>
                 <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
-                <span class="error" th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}"></span>
+                <span class="error" th:if="${#fields.hasErrors('passwordConfirmation')}"
+                      th:errors="*{passwordConfirmation}"></span>
                 <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                 <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             </div>

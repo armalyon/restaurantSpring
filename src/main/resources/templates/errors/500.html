@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+>
 <head>
     <title th:text="#{string.error.internal}"></title>
 </head>
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
 <div margin-left="50">
-<h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">500</h1>
-<h1 th:text="#{string.error.internal}"></h1>
+    <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">500</h1>
+    <h1 th:text="#{string.error.internal}"></h1>
 </div>
 </body>
 </html>

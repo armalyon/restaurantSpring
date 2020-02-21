@@ -24,6 +24,6 @@ public class RegFormValidationService {
                 && validationUtility
                 .isUsernameValid(accountDTO.getUsername())
                 && validationUtility
-                .areNameAndSurnameValid(accountDTO.getName(), accountDTO.getSurname());
+                .validateNameAndSurname(accountDTO.getName(), accountDTO.getSurname());
     }
 }

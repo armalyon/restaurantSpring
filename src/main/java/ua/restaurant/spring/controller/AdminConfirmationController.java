@@ -52,7 +52,7 @@ public class AdminConfirmationController {
         return ADMIN_CONFIRMATION_PAGE;
     }
 
-    @PostMapping( "/confirmorder" )
+    @PostMapping( "/confirm" )
     public String confirmOrder(@RequestParam Long id, @RequestParam Long quantity) {
         try {
             if (adminOrderConfirmationService.isCanBeConfirmed(id))
@@ -65,7 +65,7 @@ public class AdminConfirmationController {
         return ADMIN_CONFIRMATION_REDIRECT;
     }
 
-    @PostMapping( "/rejectorder" )
+    @PostMapping( "/reject" )
     public String rejectOrder(Long id) {
         adminOrderStatementService.updateOrderStatement(OrderStatement.REJECTED, id);
         return ADMIN_CONFIRMATION_REDIRECT;

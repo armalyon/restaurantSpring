@@ -16,12 +16,7 @@ public class AdminOrderStatementService {
     }
 
     @Transactional
-    public boolean updateOrderStatement(OrderStatement statement, Long orderId) {
-        try {
-            orderRepository.updateOrderStatementById(statement, orderId);
-        } catch (Throwable e) {
-            return false;
-        }
-        return true;
+    public void updateOrderStatement(OrderStatement statement, Long orderId) {
+        orderRepository.updateOrderStatementById(statement, orderId);
     }
 }

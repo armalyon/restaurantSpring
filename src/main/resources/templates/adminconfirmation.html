@@ -57,13 +57,13 @@
                         </td>
                         <td th:text="${ordered.quantity}"></td>
                         <td>
-                            <form th:action="@{/admin/confirmation/confirmorder}" method="post" style="float: left">
+                            <form th:action="@{/admin/confirmation/confirm}" method="post" style="float: left">
                                 <input type="hidden" name="id" th:value="${ordered.id}">
                                 <input type="hidden" name="quantity" th:value="${ordered.quantity}">
                                 <input type="submit" class="button"
                                        th:value="#{string.admin.orders.action.confirm}">
                             </form>
-                            <form th:action="@{/admin/confirmation/rejectorder}" method="post" style="float: left">
+                            <form th:action="@{/admin/confirmation/reject}" method="post" style="float: left">
                                 <input type="hidden" name="id" th:value="${ordered.id}">
                                 <input type="submit" class="button"
                                        th:value="#{string.admin.orders.action.reject}">
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-<span class="locale">
+        <span class="locale">
     <a href="?lang=en">EN</a>
     |
     <a href="?lang=ua">UA</a>
