@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ua.restaurant.spring.domain.Bill;
 import ua.restaurant.spring.dto.UserInfoDTO;
-import ua.restaurant.spring.exceptions.IdNotFoundExeption;
+import ua.restaurant.spring.exception.IdNotFoundException;
 import ua.restaurant.spring.service.ClientBillsService;
 import ua.restaurant.spring.service.UserInfoDTOService;
 
@@ -42,7 +42,7 @@ public class AdminClientStatsController {
         try {
             userInfoDTO = userInfoDTOService
                     .getUserInfDTOById(id);
-        } catch (IdNotFoundExeption e) {
+        } catch (IdNotFoundException e) {
             return handleIdNotFoundExc(e);
         }
 
@@ -54,7 +54,7 @@ public class AdminClientStatsController {
         return ADMIN_CLIENT_STATS_PAGE;
     }
 
-    private String handleIdNotFoundExc(IdNotFoundExeption e) {
+    private String handleIdNotFoundExc(IdNotFoundException e) {
         log.warn(e.getMessage() + e.getId());
         return ADMIN_CLIENT_STATS_ERROR_REDIRECT;
     }

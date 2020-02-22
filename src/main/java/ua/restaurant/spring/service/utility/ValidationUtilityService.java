@@ -3,8 +3,8 @@ package ua.restaurant.spring.service.utility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
-import ua.restaurant.spring.exceptions.ConfirmationDoesNotMatchException;
-import ua.restaurant.spring.exceptions.RegexMismatchException;
+import ua.restaurant.spring.exception.ConfirmationDoesNotMatchException;
+import ua.restaurant.spring.exception.RegexMismatchException;
 
 import java.util.Objects;
 import java.util.ResourceBundle;

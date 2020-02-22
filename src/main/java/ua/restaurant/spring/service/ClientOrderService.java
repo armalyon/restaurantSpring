@@ -1,13 +1,14 @@
 package ua.restaurant.spring.service;
 
 import org.springframework.stereotype.Service;
+import ua.restaurant.spring.domain.MenuItem;
 import ua.restaurant.spring.domain.Order;
 import ua.restaurant.spring.domain.User;
 import ua.restaurant.spring.domain.type.OrderStatement;
 import ua.restaurant.spring.dto.OrderDTO;
-import ua.restaurant.spring.exceptions.ItemNotFoundException;
-import ua.restaurant.spring.exceptions.NotEnoughItemsException;
-import ua.restaurant.spring.exceptions.UserNotFoundException;
+import ua.restaurant.spring.exception.IdNotFoundException;
+import ua.restaurant.spring.exception.NotEnoughItemsException;
+import ua.restaurant.spring.exception.UserNotFoundException;
 import ua.restaurant.spring.repository.MenuItemRepository;
 import ua.restaurant.spring.repository.OrderRepository;
 import ua.restaurant.spring.repository.UserRepository;
@@ -30,23 +31,25 @@ public class ClientOrderService {
     }
 
     public void saveNewOrder(String username, OrderDTO orderDTO) throws NotEnoughItemsException,
-            UserNotFoundException, ItemNotFoundException {
+            UserNotFoundException, IdNotFoundException {
         User user = userRepository
                 .findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("User not found during creating of a new order", username));
-
-        if (!isItemsEnough(orderDTO)) {
+        MenuItem menuItem = menuItemRepository
+                .findById(orderDTO.getMenuItemId())
+                .orElseThrow(() -> new IdNotFoundException("menu item not found by id", orderDTO.getMenuItemId()));
+        if (!isItemsEnough(orderDTO, menuItem)) {
             throw new NotEnoughItemsException("Not enough items");
         }
-        Order order = createOrder(orderDTO, user);
+        Order order = createOrder(orderDTO, user, menuItem);
         orderRepository.save(order);
     }
 
-    private Order createOrder(OrderDTO orderDTO, User user) {
+    private Order createOrder(OrderDTO orderDTO, User user, MenuItem menuItem) {
         return Order.builder()
-                .menuItem(orderDTO.getMenuItem())
+                .menuItem(menuItem)
                 .quantity(orderDTO.getQuantity())
-                .totalPrice(getTotalPrice(orderDTO))
+                .totalPrice(getTotalPrice(orderDTO, menuItem))
                 .date(LocalDate.now())
                 .time(LocalTime.now())
                 .user(user)
@@ -54,21 +57,14 @@ public class ClientOrderService {
                 .build();
     }
 
-    private boolean isItemsEnough(OrderDTO orderDTO) throws ItemNotFoundException {
+    private boolean isItemsEnough(OrderDTO orderDTO, MenuItem menuItem)  {
         return orderDTO.getQuantity()
                 <=
-                menuItemRepository.findByName(
-                        orderDTO.getMenuItem()
-                                .getName())
-                        .orElseThrow(() -> new ItemNotFoundException("menu item  not found" +
-                                orderDTO.getMenuItem().getName()))
-                        .getStorageQuantity();
+               menuItem.getStorageQuantity();
     }
 
-    private long getTotalPrice(OrderDTO orderDTO) {
-        return orderDTO
-                .getMenuItem()
-                .getPrice() * orderDTO.getQuantity();
+    private long getTotalPrice(OrderDTO orderDTO, MenuItem menuItem) {
+        return menuItem.getPrice() * orderDTO.getQuantity();
     }
 
 

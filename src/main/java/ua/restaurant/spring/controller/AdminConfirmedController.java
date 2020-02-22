@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.restaurant.spring.domain.Order;
 import ua.restaurant.spring.domain.type.OrderStatement;
-import ua.restaurant.spring.exceptions.IdNotFoundExeption;
+import ua.restaurant.spring.exception.IdNotFoundException;
 import ua.restaurant.spring.service.AdminBillService;
 import ua.restaurant.spring.service.AdminOrderService;
 
@@ -49,7 +49,7 @@ public class AdminConfirmedController {
     public String billByOrder(Long id) {
         try {
             adminBillService.saveNewBill(id);
-        } catch (IdNotFoundExeption e) {
+        } catch (IdNotFoundException e) {
             return handleNotFoundExc(e);
         }
         return ADMIN_CONFIRMED_REDIRECT;

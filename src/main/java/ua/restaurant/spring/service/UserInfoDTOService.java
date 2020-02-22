@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.restaurant.spring.domain.User;
 import ua.restaurant.spring.dto.UserInfoDTO;
-import ua.restaurant.spring.exceptions.IdNotFoundExeption;
+import ua.restaurant.spring.exception.IdNotFoundException;
 import ua.restaurant.spring.repository.OrderRepository;
 import ua.restaurant.spring.repository.UserRepository;
 
@@ -21,10 +21,10 @@ public class UserInfoDTOService {
         this.orderRepository = orderRepository;
     }
 
-    public UserInfoDTO getUserInfDTOById(Long id) throws IdNotFoundExeption {
+    public UserInfoDTO getUserInfDTOById(Long id) throws IdNotFoundException {
         User user = userRepository
                 .findById(id)
-                .orElseThrow(() -> new IdNotFoundExeption("not found ", id));
+                .orElseThrow(() -> new IdNotFoundException("not found ", id));
         return buildUserInfoDTO(user);
     }
 

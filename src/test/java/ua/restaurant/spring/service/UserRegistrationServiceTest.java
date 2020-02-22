@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ua.restaurant.spring.domain.User;
 import ua.restaurant.spring.domain.type.Role;
 import ua.restaurant.spring.dto.AccountDTO;
-import ua.restaurant.spring.exceptions.UserExistsException;
+import ua.restaurant.spring.exception.UserExistsException;
 import ua.restaurant.spring.repository.UserRepository;
 
 import java.time.LocalDateTime;

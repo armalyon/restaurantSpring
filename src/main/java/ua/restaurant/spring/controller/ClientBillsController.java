@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.restaurant.spring.domain.Bill;
-import ua.restaurant.spring.exceptions.IdNotFoundExeption;
-import ua.restaurant.spring.exceptions.NotEnoughFundsException;
-import ua.restaurant.spring.exceptions.UserNotFoundException;
+import ua.restaurant.spring.exception.IdNotFoundException;
+import ua.restaurant.spring.exception.NotEnoughFundsException;
+import ua.restaurant.spring.exception.UserNotFoundException;
 import ua.restaurant.spring.service.ClientBillsService;
 import ua.restaurant.spring.service.PayBillService;
 import ua.restaurant.spring.service.UserService;
@@ -62,7 +62,7 @@ public class ClientBillsController {
             payBillService.payBill(id, principal.getName());
         } catch (NotEnoughFundsException e) {
             return handleNotEnoughFundsExc(e);
-        } catch (IdNotFoundExeption e) {
+        } catch (IdNotFoundException e) {
             return handleIdNotFoundExc(e);
         } catch (UserNotFoundException e) {
             log.warn(e.getMessage());
@@ -72,7 +72,7 @@ public class ClientBillsController {
     }
 
 
-    private String handleIdNotFoundExc(IdNotFoundExeption e) {
+    private String handleIdNotFoundExc(IdNotFoundException e) {
         log.error(e.getId() + e.getMessage());
         return USER_BILLS_NOTFOUND_ERROR_REDIRECT;
     }

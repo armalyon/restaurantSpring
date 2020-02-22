@@ -1,15 +1,12 @@
 package ua.restaurant.spring.service.utility;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ua.restaurant.spring.exceptions.ConfirmationDoesNotMatchException;
-import ua.restaurant.spring.exceptions.RegexMismatchException;
+import ua.restaurant.spring.exception.ConfirmationDoesNotMatchException;
+import ua.restaurant.spring.exception.RegexMismatchException;
 
 
 @RunWith( MockitoJUnitRunner.class )

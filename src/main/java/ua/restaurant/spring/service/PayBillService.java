@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.restaurant.spring.domain.Bill;
 import ua.restaurant.spring.domain.User;
-import ua.restaurant.spring.exceptions.IdNotFoundExeption;
-import ua.restaurant.spring.exceptions.NotEnoughFundsException;
-import ua.restaurant.spring.exceptions.UserNotFoundException;
+import ua.restaurant.spring.exception.IdNotFoundException;
+import ua.restaurant.spring.exception.NotEnoughFundsException;
+import ua.restaurant.spring.exception.UserNotFoundException;
 import ua.restaurant.spring.repository.BillRepository;
 import ua.restaurant.spring.repository.UserRepository;
 
@@ -29,7 +29,7 @@ public class PayBillService {
         this.userRepository = userRepository;
     }
 
-    public boolean payBill(Long id, String username) throws NotEnoughFundsException, IdNotFoundExeption, UserNotFoundException {
+    public boolean payBill(Long id, String username) throws NotEnoughFundsException, IdNotFoundException, UserNotFoundException {
         Bill bill = getBillById(id);
         User user = getUserByUsername(username);
         User admin = getUserByUsername(ADMIN_USERNAME);
@@ -72,10 +72,10 @@ public class PayBillService {
         return !bill.getStatement().equals(PAYED);
     }
 
-    private Bill getBillById(Long id) throws IdNotFoundExeption {
+    private Bill getBillById(Long id) throws IdNotFoundException {
         return billRepository.findById(id)
                 .orElseThrow(
-                        () -> new IdNotFoundExeption("bill id not found in DB", id)
+                        () -> new IdNotFoundException("bill id not found in DB", id)
                 );
     }
 

@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ua.restaurant.spring.dto.MenuDTO;
 import ua.restaurant.spring.dto.OrderDTO;
 import ua.restaurant.spring.dto.OrdersDTO;
-import ua.restaurant.spring.exceptions.ItemNotFoundException;
-import ua.restaurant.spring.exceptions.NotEnoughItemsException;
-import ua.restaurant.spring.exceptions.UserNotFoundException;
+import ua.restaurant.spring.exception.IdNotFoundException;
+import ua.restaurant.spring.exception.NotEnoughItemsException;
+import ua.restaurant.spring.exception.UserNotFoundException;
 import ua.restaurant.spring.service.ClientOrderService;
 import ua.restaurant.spring.service.MenuService;
 import ua.restaurant.spring.service.OrdersDTOService;
@@ -57,32 +57,31 @@ public class ClientPageController {
 
     @PostMapping( "/order" )
     public String getOrder(@ModelAttribute OrderDTO orderDTO, Principal principal) {
-
         try {
             clientOrderService.saveNewOrder(principal.getName(), orderDTO);
         } catch (NotEnoughItemsException e) {
             return handleNotEnoughItemsExc(e);
         } catch (UserNotFoundException e) {
             return handleUserNotFoundExc(e);
-        } catch (ItemNotFoundException e) {
-            return handleItemNotFoundExc(e);
+        } catch (IdNotFoundException e) {
+            return handleIdNotFoundExc(e);
         }
         return USER_REDIRECT;
     }
 
 
-    private String handleNotEnoughItemsExc(Exception e) {
-        log.warn(e.getMessage());
+    private String handleNotEnoughItemsExc(NotEnoughItemsException e) {
+        log.error(e.getMessage());
         return QUANTITY_NOT_ENOUGH_REDIRECT;
     }
 
-    private String handleUserNotFoundExc(Exception e) {
-        log.warn(e.getMessage());
+    private String handleUserNotFoundExc(UserNotFoundException e) {
+        log.error(e.getMessage());
         return LOGOUT_REDIRECT;
     }
 
-    private String handleItemNotFoundExc(Exception e) {
-        log.warn(e.getMessage());
+    private String handleIdNotFoundExc(IdNotFoundException e) {
+        log.error("Error: {}, id= {}", e.getMessage(), e.getId());
         return ITEM_NOT_FOUND_REDIRECT;
     }
 

@@ -1,4 +1,4 @@
-package ua.restaurant.spring.exceptions;
+package ua.restaurant.spring.exception;
 
 
 import lombok.Getter;

@@ -10,9 +10,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 import ua.restaurant.spring.domain.Bill;
 import ua.restaurant.spring.domain.Order;
 import ua.restaurant.spring.domain.User;
-import ua.restaurant.spring.exceptions.IdNotFoundExeption;
-import ua.restaurant.spring.exceptions.NotEnoughFundsException;
-import ua.restaurant.spring.exceptions.UserNotFoundException;
+import ua.restaurant.spring.exception.IdNotFoundException;
+import ua.restaurant.spring.exception.NotEnoughFundsException;
+import ua.restaurant.spring.exception.UserNotFoundException;
 import ua.restaurant.spring.repository.BillRepository;
 import ua.restaurant.spring.repository.UserRepository;
 
@@ -91,39 +91,39 @@ public class PayBillServiceTest {
         when(userRepository.findByUsername(USER_FUNDS_NOT_ENOUGH.getUsername())).thenReturn(Optional.of(USER_FUNDS_NOT_ENOUGH));
         when(billRepository.findById(BILL.getId())).thenReturn(Optional.of(BILL));
         when(billRepository.findById(BILL_PAYED.getId())).thenReturn(Optional.of(BILL_PAYED));
-        doThrow(IdNotFoundExeption.class).when(billRepository).findById(BILL_NOT_FOUND_ID);
+        doThrow(IdNotFoundException.class).when(billRepository).findById(BILL_NOT_FOUND_ID);
         doThrow(UserNotFoundException.class).when(userRepository).findByUsername(USERNAME_2);
     }
 
     @Test
     public void shouldReturnTrueWhenBillNotPayedAndFundsEnough()
-            throws UserNotFoundException, IdNotFoundExeption, NotEnoughFundsException {
+            throws UserNotFoundException, IdNotFoundException, NotEnoughFundsException {
         boolean result = instance.payBill(BILL.getId(), USER.getUsername());
         Assert.assertTrue(result);
     }
 
     @Test
     public void shouldReturnFalseWhenBillPayed()
-            throws UserNotFoundException, IdNotFoundExeption, NotEnoughFundsException {
+            throws UserNotFoundException, IdNotFoundException, NotEnoughFundsException {
         boolean result = instance.payBill(BILL_PAYED.getId(), USER.getUsername());
         Assert.assertFalse(result);
     }
 
     @Test(expected = NotEnoughFundsException.class)
     public void shouldThrowExeptionWhenUserFundsNotEnough()
-            throws UserNotFoundException, IdNotFoundExeption, NotEnoughFundsException {
+            throws UserNotFoundException, IdNotFoundException, NotEnoughFundsException {
         instance.payBill(BILL.getId(), USER_FUNDS_NOT_ENOUGH.getUsername());
     }
 
-    @Test(expected = IdNotFoundExeption.class)
+    @Test(expected = IdNotFoundException.class)
     public void shouldThrowExceptionWhenBillIdNotFound()
-            throws UserNotFoundException, IdNotFoundExeption, NotEnoughFundsException {
+            throws UserNotFoundException, IdNotFoundException, NotEnoughFundsException {
         instance.payBill(BILL_NOT_FOUND_ID, USER.getUsername());
     }
 
     @Test(expected = UserNotFoundException.class)
     public void shouldThrowExceptionWhenUsernameNotFound()
-            throws UserNotFoundException, IdNotFoundExeption, NotEnoughFundsException {
+            throws UserNotFoundException, IdNotFoundException, NotEnoughFundsException {
         instance.payBill(BILL.getId(), USERNAME_2);
     }
 }

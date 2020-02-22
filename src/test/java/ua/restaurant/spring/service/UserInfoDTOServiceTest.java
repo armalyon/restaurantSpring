@@ -10,8 +10,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import ua.restaurant.spring.domain.User;
 import ua.restaurant.spring.domain.type.Role;
 import ua.restaurant.spring.dto.UserInfoDTO;
-import ua.restaurant.spring.exceptions.IdNotFoundExeption;
-import ua.restaurant.spring.exceptions.UserNotFoundException;
+import ua.restaurant.spring.exception.IdNotFoundException;
+import ua.restaurant.spring.exception.UserNotFoundException;
 import ua.restaurant.spring.repository.OrderRepository;
 import ua.restaurant.spring.repository.UserRepository;
 
@@ -67,13 +67,13 @@ public class UserInfoDTOServiceTest {
     }
 
     @Test
-    public void shouldReturnUserInfoDTOIfUserExists() throws IdNotFoundExeption {
+    public void shouldReturnUserInfoDTOIfUserExists() throws IdNotFoundException {
         UserInfoDTO result = instance.getUserInfDTOById(ID);
         Assert.assertEquals(USER_INFO_DTO, result);
     }
 
     @Test(expected = UserNotFoundException.class)
-    public void shouldThrowExceptionWhenIdNotFound() throws IdNotFoundExeption {
+    public void shouldThrowExceptionWhenIdNotFound() throws IdNotFoundException {
         instance.getUserInfDTOById(ID_NOT_FOUND);
     }
 

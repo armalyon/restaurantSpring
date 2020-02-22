@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 public class OrderDTO {
     @NotNull
     @NotEmpty
-    private MenuItem menuItem;
+    private long menuItemId;
     @NotNull
     @NotEmpty
     private Long quantity;

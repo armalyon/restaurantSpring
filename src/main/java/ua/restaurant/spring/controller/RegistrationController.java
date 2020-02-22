@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.restaurant.spring.dto.AccountDTO;
-import ua.restaurant.spring.exceptions.ConfirmationDoesNotMatchException;
-import ua.restaurant.spring.exceptions.RegexMismatchException;
-import ua.restaurant.spring.exceptions.UserExistsException;
+import ua.restaurant.spring.exception.ConfirmationDoesNotMatchException;
+import ua.restaurant.spring.exception.RegexMismatchException;
+import ua.restaurant.spring.exception.UserExistsException;
 import ua.restaurant.spring.service.RegFormValidationService;
 import ua.restaurant.spring.service.UserRegistrationService;
 

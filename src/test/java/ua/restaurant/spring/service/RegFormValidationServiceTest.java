@@ -8,8 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import  org.mockito.runners.MockitoJUnitRunner;
 import ua.restaurant.spring.dto.AccountDTO;
-import ua.restaurant.spring.exceptions.ConfirmationDoesNotMatchException;
-import ua.restaurant.spring.exceptions.RegexMismatchException;
+import ua.restaurant.spring.exception.ConfirmationDoesNotMatchException;
+import ua.restaurant.spring.exception.RegexMismatchException;
 import ua.restaurant.spring.service.utility.ValidationUtilityService;
 
 import static org.mockito.Mockito.when;

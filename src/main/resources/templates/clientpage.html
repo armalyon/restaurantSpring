@@ -31,11 +31,7 @@
             <td th:text="${item.price}"></td>
             <td>
                 <form class="orderForm" th:action="@{/user/order}" method="post" th:object="${orderDTO}">
-                    <input type="hidden" name="menuItem.id" th:value="${item.id}">
-                    <input type="hidden" name="menuItem.name" th:value="${item.name}">
-                    <input type="hidden" name="menuItem.nameUA" th:value="${item.nameUA}">
-                    <input type="hidden" name="menuItem.storageQuantity" th:value="${item.storageQuantity}">
-                    <input type="hidden" name="menuItem.price" th:value="${item.price}">
+                    <input type="hidden" name="menuItemId" th:value="${item.id}">
                     <input type="number" class="quantity" max="20" min="0" required th:field="*{quantity}">
                     <input class="button" type="submit" th:value="#{string.user.menu.order}">
                 </form>
