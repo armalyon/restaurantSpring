@@ -5,25 +5,25 @@ import org.springframework.stereotype.Service;
 import ua.restaurant.spring.dto.AccountDTO;
 import ua.restaurant.spring.exceptions.ConfirmationDoesNotMatchException;
 import ua.restaurant.spring.exceptions.RegexMismatchException;
-import ua.restaurant.spring.service.utility.ValidationUtility;
+import ua.restaurant.spring.service.utility.ValidationUtilityService;
 
 @Service
 public class RegFormValidationService {
 
-    private ValidationUtility validationUtility;
+    private ValidationUtilityService validationUtilityService;
 
     @Autowired
-    public RegFormValidationService(ValidationUtility validationUtility) {
-        this.validationUtility = validationUtility;
+    public RegFormValidationService(ValidationUtilityService validationUtilityService) {
+        this.validationUtilityService = validationUtilityService;
     }
 
     public boolean isRegFormValid(AccountDTO accountDTO)
             throws ConfirmationDoesNotMatchException, RegexMismatchException {
-        return validationUtility
+        return validationUtilityService
                 .isPasswordCanBeUsed(accountDTO.getPassword(), accountDTO.getPasswordConfirmation())
-                && validationUtility
+                && validationUtilityService
                 .isUsernameValid(accountDTO.getUsername())
-                && validationUtility
+                && validationUtilityService
                 .validateNameAndSurname(accountDTO.getName(), accountDTO.getSurname());
     }
 }

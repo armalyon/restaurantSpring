@@ -1,6 +1,7 @@
 package ua.restaurant.spring.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ua.restaurant.spring.domain.type.Role;
@@ -10,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
+@EqualsAndHashCode
 public class UserAdapter implements UserDetails {
     private User user;
 

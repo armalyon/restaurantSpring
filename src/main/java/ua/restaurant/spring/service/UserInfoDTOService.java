@@ -24,8 +24,11 @@ public class UserInfoDTOService {
     public UserInfoDTO getUserInfDTOById(Long id) throws IdNotFoundExeption {
         User user = userRepository
                 .findById(id)
-                .orElseThrow(() -> new IdNotFoundExeption("not found", id));
+                .orElseThrow(() -> new IdNotFoundExeption("not found ", id));
+        return buildUserInfoDTO(user);
+    }
 
+    private UserInfoDTO buildUserInfoDTO(User user) {
         return UserInfoDTO.builder()
                 .username(user.getUsername())
                 .name(user.getName())
@@ -33,7 +36,7 @@ public class UserInfoDTOService {
                 .registrationDate(user.getRegistrationDate())
                 .ordersTotalNumber(
                         orderRepository
-                                .countByUser_Id(id)
+                                .countByUser_Id(user.getId())
                 ).build();
     }
 

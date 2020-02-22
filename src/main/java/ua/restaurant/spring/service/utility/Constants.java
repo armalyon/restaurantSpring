@@ -2,9 +2,6 @@ package ua.restaurant.spring.service.utility;
 
 public interface Constants {
     String ADMIN_USERNAME = "admin";
-    String USERNAME_REGEX = "regex.validation.username";
-    String NAME_REGEX = "regex.validation.name";
-    String PASSWORD_REGEX = "regex.validation.password";
     String LOGIN_EXISTS = "string.reg.login.exists";
     String CONFIRMATION_PASSWORD_ERROR = "string.reg.confirmation.error";
     String PASSWORD_REGEX_ERROR = "string.reg.password.regex.error";

@@ -29,7 +29,7 @@ public class LoginController {
     @RequestMapping( "/" )
     public String getMainPage(Principal principal) {
         Role role = userService
-                .getUserRole(principal.getName());
+                .getUserRoleByUsername(principal.getName());
         switch (role) {
             case CLIENT:
                 return USER_REDIRECT;

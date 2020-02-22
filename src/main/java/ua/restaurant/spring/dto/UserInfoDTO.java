@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @ToString
+@EqualsAndHashCode
 public class UserInfoDTO {
     @NotNull
     @NotEmpty

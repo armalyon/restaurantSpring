@@ -25,21 +25,24 @@ public class UserRegistrationService {
         this.userRepository = userRepository;
     }
 
-    public boolean saveNewUser(AccountDTO accountDTO) throws UserExistsException {
-        User user = User.builder()
-                .username(accountDTO.getUsername())
-                .password(encoder.encode(accountDTO.getPassword()))
-                .name(accountDTO.getName())
-                .surname(accountDTO.getSurname())
-                .funds(25)
-                .role(Role.CLIENT)
-                .registrationDate(LocalDateTime.now())
-                .build();
+    public void saveNewUser(AccountDTO accountDTO) throws UserExistsException {
+        User user = buildUser(accountDTO);
         try {
             userRepository.save(user);
         } catch (DataIntegrityViolationException e) {
             throw new UserExistsException("Login is already exists", user.getUsername());
         }
-        return true;
+    }
+
+    private User buildUser(AccountDTO accountDTO) {
+        return User.builder()
+                    .username(accountDTO.getUsername())
+                    .password(encoder.encode(accountDTO.getPassword()))
+                    .name(accountDTO.getName())
+                    .surname(accountDTO.getSurname())
+                    .funds(25)
+                    .role(Role.CLIENT)
+                    .registrationDate(LocalDateTime.now())
+                    .build();
     }
 }
