@@ -17,7 +17,7 @@ import ua.restaurant.spring.exception.NotEnoughItemsException;
 import ua.restaurant.spring.exception.UserNotFoundException;
 import ua.restaurant.spring.service.ClientOrderService;
 import ua.restaurant.spring.service.MenuService;
-import ua.restaurant.spring.service.OrdersDTOService;
+import ua.restaurant.spring.service.OrdersService;
 
 import java.security.Principal;
 
@@ -32,15 +32,15 @@ public class ClientPageController {
     private final static String CLIENTPAGE_NAME = "clientpage";
 
     private MenuService menuService;
-    private OrdersDTOService ordersDTOService;
+    private OrdersService ordersService;
     private ClientOrderService clientOrderService;
 
     @Autowired
     public ClientPageController(MenuService menuService,
-                                OrdersDTOService ordersDTOService,
+                                OrdersService ordersService,
                                 ClientOrderService clientOrderService) {
         this.menuService = menuService;
-        this.ordersDTOService = ordersDTOService;
+        this.ordersService = ordersService;
         this.clientOrderService = clientOrderService;
     }
 
@@ -48,7 +48,7 @@ public class ClientPageController {
     @PreAuthorize( "hasAuthority('CLIENT')" )
     public String getMainPage(Principal principal, Model model) {
         MenuDTO menu = menuService.getMenu();
-        OrdersDTO ordersDTO = ordersDTOService.getTodayOrdersByUserame(principal.getName());
+        OrdersDTO ordersDTO = ordersService.getTodayOrdersByUserame(principal.getName());
         model.addAttribute("todayOrders", ordersDTO);
         model.addAttribute("menuDTO", menu);
         model.addAttribute("orderDTO", new OrderDTO());

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      th:with="lang=${#locale.language}" th:lang="${lang}">
-<link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
+<html th:lang="${lang}" th:with="lang=${#locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link href="../css/userpanel.css" rel="stylesheet" th:href="@{/css/userpanel.css}">
 <head>
     <title th:text="#{string.admin.panel}"></title>
 </head>
@@ -12,18 +12,18 @@
         <table>
             <tr>
                 <td>
-                    <form th:action="@{/admin}" method="get">
-                        <input class="button" type="submit" th:value="#{string.admin.confirmation.button.main}">
+                    <form method="get" th:action="@{/admin}">
+                        <input class="button" th:value="#{string.admin.confirmation.button.main}" type="submit">
                     </form>
                 </td>
                 <td>
-                    <form th:action="@{/admin/confirmed}" method="get" class="navigation">
-                        <input class="button" type="submit" th:value="#{string.admin.button.confirmed}">
+                    <form class="navigation" method="get" th:action="@{/admin/confirmed}">
+                        <input class="button" th:value="#{string.admin.button.confirmed}" type="submit">
                     </form>
                 </td>
                 <td>
-                    <form th:action="@{/logout}" method="post">
-                        <input class="button" type="submit" th:value="#{string.common.logout}"/>
+                    <form method="post" th:action="@{/logout}">
+                        <input class="button" th:value="#{string.common.logout}" type="submit"/>
                     </form>
                 </td>
 
@@ -57,26 +57,26 @@
                         </td>
                         <td th:text="${ordered.quantity}"></td>
                         <td>
-                            <form th:action="@{/admin/confirmation/confirm}" method="post" style="float: left">
-                                <input type="hidden" name="id" th:value="${ordered.id}">
-                                <input type="hidden" name="quantity" th:value="${ordered.quantity}">
-                                <input type="submit" class="button"
-                                       th:value="#{string.admin.orders.action.confirm}">
+                            <form method="post" style="float: left" th:action="@{/admin/confirmation/confirm}">
+                                <input name="id" th:value="${ordered.id}" type="hidden">
+                                <input name="quantity" th:value="${ordered.quantity}" type="hidden">
+                                <input class="button" th:value="#{string.admin.orders.action.confirm}"
+                                       type="submit">
                             </form>
-                            <form th:action="@{/admin/confirmation/reject}" method="post" style="float: left">
-                                <input type="hidden" name="id" th:value="${ordered.id}">
-                                <input type="submit" class="button"
-                                       th:value="#{string.admin.orders.action.reject}">
+                            <form method="post" style="float: left" th:action="@{/admin/confirmation/reject}">
+                                <input name="id" th:value="${ordered.id}" type="hidden">
+                                <input class="button" th:value="#{string.admin.orders.action.reject}"
+                                       type="submit">
                             </form>
                         </td>
                     </tr>
                 </table>
                 <nav th:if="${page.totalPages > 1}">
                     <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
-                        <div th:if="${page.number == i}" class="page-item"><span
+                        <div class="page-item" th:if="${page.number == i}"><span
                                 class="page-link">[[${i}+1]] </span></div>
-                        <div th:unless="${page.number == i}" class="page-item">
-                            <a th:href="@{/admin/confirmation(page=${i})}" class="page-link">[[${i}+1]]</a>
+                        <div class="page-item" th:unless="${page.number == i}">
+                            <a class="page-link" th:href="@{/admin/confirmation(page=${i})}">[[${i}+1]]</a>
                         </div>
                     </th:block>
                 </nav>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" href="css/form.css">
+<link href="css/form.css" rel="stylesheet" type="text/css">
 <head>
     <title th:text="#{string.login.title.please.login}"></title>
 </head>
@@ -14,21 +14,21 @@
     <div class="panel-body">
         <div class="field" th:if="${param.logout}" th:text="#{string.login.user.been.logged.out}">
         </div>
-        <form th:action="@{/login}" method="post">
+        <form method="post" th:action="@{/login}">
             <div class="field">
                 <label th:text="#{string.login.login}">
                 </label>
-                <input type="text" name="username" class="input"/>
+                <input class="input" name="username" type="text"/>
             </div>
             <div class="field">
                 <label th:text="#{string.login.password}">
                 </label>
-                <input type="password" name="password" class="input"/>
+                <input class="input" name="password" type="password"/>
             </div>
-            <div class="field"><input type="submit" th:value="#{string.login.button.login}" class="button"/></div>
+            <div class="field"><input class="button" th:value="#{string.login.button.login}" type="submit"/></div>
         </form>
-        <form class="register" th:action="@{/registration}" method="get">
-            <div class="field"><input type="submit" th:value="#{string.login.button.register}" class="button"/></div>
+        <form class="register" method="get" th:action="@{/registration}">
+            <div class="field"><input class="button" th:value="#{string.login.button.register}" type="submit"/></div>
         </form>
     </div>
     <div class="locale">

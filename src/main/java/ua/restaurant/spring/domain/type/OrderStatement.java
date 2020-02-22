@@ -6,13 +6,12 @@ public enum OrderStatement {
     REJECTED("Rejected", "Відмовлено"),
     INVOICED("Invoiced", "Виставлено рахунок");
 
+    private String message;
+    private String messageUA;
     OrderStatement(String message, String messageUA) {
         this.message = message;
         this.messageUA = messageUA;
     }
-
-    private String message;
-    private String messageUA;
 
     public String getMessage() {
         return message;

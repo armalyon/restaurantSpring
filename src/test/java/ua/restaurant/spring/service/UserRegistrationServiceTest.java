@@ -16,8 +16,8 @@ import ua.restaurant.spring.repository.UserRepository;
 
 import java.time.LocalDateTime;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 
 @RunWith( MockitoJUnitRunner.class )
 public class UserRegistrationServiceTest {
@@ -67,11 +67,12 @@ public class UserRegistrationServiceTest {
         doThrow(DataIntegrityViolationException.class).when(userRepository).save(USER);
     }
 
-    @Test(expected = Test.None.class )
+    @Test( expected = Test.None.class )
     public void shouldNotThrowExceptionWhenUsernameValid() throws UserExistsException {
         instance.saveNewUser(VALID_ACCOUNT_DTO);
     }
-    @Test(expected = UserExistsException.class )
+
+    @Test( expected = UserExistsException.class )
     public void shouldThrowExceptionWhenUsernameExists() throws UserExistsException {
         instance.saveNewUser(INVALID_ACCOUNT_DTO);
     }

@@ -13,11 +13,11 @@ import java.time.LocalDate;
 
 @Slf4j
 @Service
-public class OrdersDTOService {
+public class OrdersService {
     private OrderRepository orderRepository;
 
     @Autowired
-    public OrdersDTOService(OrderRepository orderRepository) {
+    public OrdersService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 

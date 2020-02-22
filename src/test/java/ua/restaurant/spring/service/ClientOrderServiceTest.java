@@ -99,14 +99,14 @@ public class ClientOrderServiceTest {
 
     @Test( expected = UserNotFoundException.class )
     public void shouldThrowUserNotFoundExceptionWhenUsernameNotFound()
-            throws UserNotFoundException, NotEnoughItemsException, IdNotFoundException  {
+            throws UserNotFoundException, NotEnoughItemsException, IdNotFoundException {
         instance.saveNewOrder(USERNAME_NOT_FOUND, ORDER_DTO);
     }
 
     @Test( expected = IdNotFoundException.class )
     public void shouldThrowIdNotFoundExceptionWhenMenuItemIdNotFound()
             throws UserNotFoundException, NotEnoughItemsException, IdNotFoundException {
-       instance.saveNewOrder(USERNAME, ORDER_DTO_NOT_FOUND);
+        instance.saveNewOrder(USERNAME, ORDER_DTO_NOT_FOUND);
     }
 
     @Test( expected = NotEnoughItemsException.class )

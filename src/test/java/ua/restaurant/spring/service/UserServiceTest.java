@@ -77,13 +77,13 @@ public class UserServiceTest {
     }
 
     @Test
-    public void shouldReturnUserDetailsWhenUserExists(){
+    public void shouldReturnUserDetailsWhenUserExists() {
         UserDetails result = instance.loadUserByUsername(USERNAME);
         Assert.assertEquals(USER_DETAILS, result);
     }
 
-    @Test(expected = UsernameNotFoundException.class)
-    public void shouldThrowExeptionWhenTryingLoadDetailsAndUsernameNotExists(){
+    @Test( expected = UsernameNotFoundException.class )
+    public void shouldThrowExeptionWhenTryingLoadDetailsAndUsernameNotExists() {
         instance.loadUserByUsername(USERNAME_NOT_FOUND);
     }
 

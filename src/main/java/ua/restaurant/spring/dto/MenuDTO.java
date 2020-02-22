@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @ToString
+@EqualsAndHashCode
 public class MenuDTO {
     private List<MenuItem> menu;
 

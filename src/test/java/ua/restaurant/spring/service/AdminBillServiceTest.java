@@ -62,7 +62,7 @@ public class AdminBillServiceTest {
     private OrderRepository orderRepository;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         when(orderRepository.findById(CONFIRMED_ORDER.getId())).thenReturn(Optional.of(CONFIRMED_ORDER));
         when(orderRepository.findById(REJECTED_ORDER.getId())).thenReturn(Optional.of(REJECTED_ORDER));
         when(orderRepository.findById(INVOICED_ORDER.getId())).thenReturn(Optional.of(INVOICED_ORDER));

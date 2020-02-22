@@ -60,7 +60,7 @@ public class UserInfoDTOServiceTest {
     private OrderRepository orderRepository;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         when(orderRepository.countByUser_Id(ID)).thenReturn(ORDERS_NUMBER);
         when(userRepository.findById(ID)).thenReturn(Optional.of(USER));
         doThrow(UserNotFoundException.class).when(userRepository).findById(ID_NOT_FOUND);
@@ -72,7 +72,7 @@ public class UserInfoDTOServiceTest {
         Assert.assertEquals(USER_INFO_DTO, result);
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test( expected = UserNotFoundException.class )
     public void shouldThrowExceptionWhenIdNotFound() throws IdNotFoundException {
         instance.getUserInfDTOById(ID_NOT_FOUND);
     }

@@ -76,7 +76,7 @@ public class AdminOrderConfirmationServiceTest {
     private MenuItemRepository menuItemRepository;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         when(orderRepository.findById(WAITING_ORDER.getId())).thenReturn(Optional.of(WAITING_ORDER));
         when(orderRepository.findById(TOO_MANY_ORDERED_ORDER.getId())).thenReturn(Optional.of(TOO_MANY_ORDERED_ORDER));
         when(orderRepository.findById(CONFIRMED_ORDER.getId())).thenReturn(Optional.of(CONFIRMED_ORDER));

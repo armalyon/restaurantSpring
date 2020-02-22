@@ -57,10 +57,10 @@ public class ClientOrderService {
                 .build();
     }
 
-    private boolean isItemsEnough(OrderDTO orderDTO, MenuItem menuItem)  {
+    private boolean isItemsEnough(OrderDTO orderDTO, MenuItem menuItem) {
         return orderDTO.getQuantity()
                 <=
-               menuItem.getStorageQuantity();
+                menuItem.getStorageQuantity();
     }
 
     private long getTotalPrice(OrderDTO orderDTO, MenuItem menuItem) {

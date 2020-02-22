@@ -36,13 +36,13 @@ public class UserRegistrationService {
 
     private User buildUser(AccountDTO accountDTO) {
         return User.builder()
-                    .username(accountDTO.getUsername())
-                    .password(encoder.encode(accountDTO.getPassword()))
-                    .name(accountDTO.getName())
-                    .surname(accountDTO.getSurname())
-                    .funds(25)
-                    .role(Role.CLIENT)
-                    .registrationDate(LocalDateTime.now())
-                    .build();
+                .username(accountDTO.getUsername())
+                .password(encoder.encode(accountDTO.getPassword()))
+                .name(accountDTO.getName())
+                .surname(accountDTO.getSurname())
+                .funds(25)
+                .role(Role.CLIENT)
+                .registrationDate(LocalDateTime.now())
+                .build();
     }
 }

@@ -20,7 +20,8 @@ public class ValidationUtilityService {
     private static final String NAME_REGEX = "regex.validation.name";
     private static final String PASSWORD_REGEX = "regex.validation.password";
 
-    private ResourceBundle bundle = ResourceBundle.getBundle("regexes");;
+    private ResourceBundle bundle = ResourceBundle.getBundle("regexes");
+    ;
 
 
     public boolean isPasswordCanBeUsed(String password,

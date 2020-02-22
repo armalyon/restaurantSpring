@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.restaurant.spring.domain.Order;
-import ua.restaurant.spring.service.OrdersDTOService;
+import ua.restaurant.spring.service.OrdersService;
 
 import java.security.Principal;
 
@@ -20,17 +20,17 @@ import java.security.Principal;
 @RequestMapping( "/user/orders" )
 public class ClientOrdersController {
     private static final String CLIENT_ORDERS_PAGE = "clientorders";
-    private OrdersDTOService ordersDTOService;
+    private OrdersService ordersService;
 
     @Autowired
-    public ClientOrdersController(OrdersDTOService ordersDTOService) {
-        this.ordersDTOService = ordersDTOService;
+    public ClientOrdersController(OrdersService ordersService) {
+        this.ordersService = ordersService;
     }
 
     @GetMapping
     @PreAuthorize( "hasAuthority('CLIENT')" )
     public String getOrdersPage(@PageableDefault Pageable pageable, Principal principal, Model model) {
-        Page<Order> page = ordersDTOService
+        Page<Order> page = ordersService
                 .getOrdersByName(principal.getName(), pageable);
         model.addAttribute("page", page);
         return CLIENT_ORDERS_PAGE;

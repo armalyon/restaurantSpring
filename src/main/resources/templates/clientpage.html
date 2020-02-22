@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      th:with="lang=${#locale.language}" th:lang="${lang}">
-<link href="../css/userpanel.css" th:href="@{/css/userpanel.css}" rel="stylesheet">
+<html th:lang="${lang}" th:with="lang=${#locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<link href="../css/userpanel.css" rel="stylesheet" th:href="@{/css/userpanel.css}">
 <head>
     <title th:text="#{string.user.panel}"></title>
 </head>
@@ -30,10 +30,10 @@
             <td th:text="${item.weight}"></td>
             <td th:text="${item.price}"></td>
             <td>
-                <form class="orderForm" th:action="@{/user/order}" method="post" th:object="${orderDTO}">
-                    <input type="hidden" name="menuItemId" th:value="${item.id}">
-                    <input type="number" class="quantity" max="20" min="0" required th:field="*{quantity}">
-                    <input class="button" type="submit" th:value="#{string.user.menu.order}">
+                <form class="orderForm" method="post" th:action="@{/user/order}" th:object="${orderDTO}">
+                    <input name="menuItemId" th:value="${item.id}" type="hidden">
+                    <input class="quantity" max="20" min="0" required th:field="*{quantity}" type="number">
+                    <input class="button" th:value="#{string.user.menu.order}" type="submit">
                 </form>
             </td>
         </tr>
@@ -41,13 +41,13 @@
     <table>
         <tr>
             <td>
-                <form th:action="@{/user/bills}" method="get">
-                    <input class="button" type="submit" th:value="#{string.user.get.bills}">
+                <form method="get" th:action="@{/user/bills}">
+                    <input class="button" th:value="#{string.user.get.bills}" type="submit">
                 </form>
             </td>
             <td>
-                <form th:action="@{/user/orders}" method="get" class="navigation">
-                    <input class="button" type="submit" th:value="#{string.user.get.orders}">
+                <form class="navigation" method="get" th:action="@{/user/orders}">
+                    <input class="button" th:value="#{string.user.get.orders}" type="submit">
                 </form>
             </td>
         </tr>
@@ -84,8 +84,8 @@
               th:text="#{string.user.have.no.orders.today}"></span>
     </div>
 
-    <form th:action="@{/logout}" method="post">
-        <input class="button" type="submit" th:value="#{string.common.logout}"/>
+    <form method="post" th:action="@{/logout}">
+        <input class="button" th:value="#{string.common.logout}" type="submit"/>
     </form>
     <span class="locale">
     <a href="?lang=en">EN</a>

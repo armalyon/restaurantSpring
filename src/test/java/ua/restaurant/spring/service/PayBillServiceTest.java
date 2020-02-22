@@ -19,7 +19,8 @@ import ua.restaurant.spring.repository.UserRepository;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 import static ua.restaurant.spring.domain.type.BillStatement.INVOICE;
 import static ua.restaurant.spring.domain.type.BillStatement.PAYED;
 import static ua.restaurant.spring.domain.type.OrderStatement.INVOICED;
@@ -85,7 +86,7 @@ public class PayBillServiceTest {
     private UserRepository userRepository;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         when(userRepository.findByUsername(USER.getUsername())).thenReturn(Optional.of(USER));
         when(userRepository.findByUsername(ADMIN.getUsername())).thenReturn(Optional.of(ADMIN));
         when(userRepository.findByUsername(USER_FUNDS_NOT_ENOUGH.getUsername())).thenReturn(Optional.of(USER_FUNDS_NOT_ENOUGH));
@@ -109,19 +110,19 @@ public class PayBillServiceTest {
         Assert.assertFalse(result);
     }
 
-    @Test(expected = NotEnoughFundsException.class)
+    @Test( expected = NotEnoughFundsException.class )
     public void shouldThrowExeptionWhenUserFundsNotEnough()
             throws UserNotFoundException, IdNotFoundException, NotEnoughFundsException {
         instance.payBill(BILL.getId(), USER_FUNDS_NOT_ENOUGH.getUsername());
     }
 
-    @Test(expected = IdNotFoundException.class)
+    @Test( expected = IdNotFoundException.class )
     public void shouldThrowExceptionWhenBillIdNotFound()
             throws UserNotFoundException, IdNotFoundException, NotEnoughFundsException {
         instance.payBill(BILL_NOT_FOUND_ID, USER.getUsername());
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test( expected = UserNotFoundException.class )
     public void shouldThrowExceptionWhenUsernameNotFound()
             throws UserNotFoundException, IdNotFoundException, NotEnoughFundsException {
         instance.payBill(BILL.getId(), USERNAME_2);
